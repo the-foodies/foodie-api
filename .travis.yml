@@ -1,0 +1,10 @@
+language: node_js
+node_js: node
+services: mongodb
+install: 
+  - npm install
+script:
+  - npm run build:rest
+  - npm run start:rest
+  - sleep 10
+  - npm test

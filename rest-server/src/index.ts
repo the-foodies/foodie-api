@@ -1,12 +1,15 @@
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
-const bodyParser = require('body-parser');
+import * as express from 'express';
+import * as path from 'path';
+import * as session from 'express-session';
+import * as redis from 'redis';
+import * as bodyParser from 'body-parser';
+import * as Redis from 'connect-redis';
+
+//might not work \/\/
+const RedisStore = Redis(session);
 
 // middleware
-const router = require('./routes');
+import { router } from './routes';
 
 const app = express();
 const client = redis.createClient();
@@ -30,12 +33,14 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, '../class-tracker-ui/angular')));
 
 // routes
-
+app.get('/', (req, res) => {
+  res.send();
+})
 
 // ui-router catch all
 app.all('/*', (req, res, next) => {
+  console.log('suh dude');
   res.sendFile(path.join(__dirname, '../class-tracker-ui/angular/index.html'));
-  next();
 });
 
 app.listen(4420, () => console.log('Example app listening on port 4420!'));

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:db": "cd db && node index.js && exit 1",
-    "seed": "node seed.js"
+    "test": "jest",
+    "build:rest": "cd rest-server && gulp scripts",
+    "start:rest": "cd rest-server/dist && nodemon index.js &"
   },
   "keywords": [],
   "author": "",
@@ -22,9 +22,16 @@
     "sequelize": "^4.22.11"
   },
   "devDependencies": {
+    "@types/node": "^8.0.53",
+    "axios": "^0.17.1",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "npm-run-all": "^4.1.2"
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.3",
+    "jest": "^21.2.1",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.2",
+    "typescript": "^2.6.2"
   }
 }
