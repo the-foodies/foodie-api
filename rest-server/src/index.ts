@@ -1,12 +1,15 @@
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
-const bodyParser = require('body-parser');
+import * as express from 'express';
+import * as path from 'path';
+import * as session from 'express-session';
+import * as redis from 'redis';
+import * as bodyParser from 'body-parser';
+import * as Redis from 'connect-redis';
+
+//might not work \/\/
+const RedisStore = Redis(session);
 
 // middleware
-const router = require('./routes');
+import { router } from './routes';
 
 const app = express();
 const client = redis.createClient();

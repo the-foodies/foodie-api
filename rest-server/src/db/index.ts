@@ -1,18 +1,19 @@
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
+import * as fs from 'fs';
+import * as path from 'path';
+import * as Sequelize from 'sequelize';
+import { sql } from './config/config';
 
-const config = require('./config');
+const sequelize = new Sequelize(sql.database, sql.username, sql.password, sql.options);
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config.options);
+interface sqlDB {
+  [key: string]: any,
+};
 
-const db = {};
+const db: sqlDB = {};
 
 fs
   .readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => {
-    return (file.indexOf('.') !== 0);
-  })
+  .filter(file => file.indexOf('.') !== 0)
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, '/models', file));
     db[model.name] = model;
@@ -40,4 +41,4 @@ db.sequelize
 
 db.sequelize.sync();
 
-module.exports = db;
+export { db };

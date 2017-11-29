@@ -6,4 +6,4 @@ const router = express.Router();
 
 // route client requests to controllers
 
-module.exports = router;
+export { router };
