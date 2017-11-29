@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build:rest": "cd rest-server && gulp scripts",
-    "start:rest": "cd rest-server/dist && nodemon index.js"
+    "start:rest": "cd rest-server/dist && nodemon index.js &"
   },
   "keywords": [],
   "author": "",
