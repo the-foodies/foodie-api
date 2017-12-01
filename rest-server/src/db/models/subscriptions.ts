@@ -12,5 +12,27 @@ module.exports = (Sequelize, DataTypes) => {
     });
   };
 
+  Subscriptions.associate = (models) => {
+    Subscriptions.belongsTo(models.Users, {
+      as: 'userSubscribedTo',
+      onDelete: 'CASCADE',
+      foreignKey: {allowNull: true, },
+    });
+  };
+
+  Subscriptions.associate = (models) => {
+    Subscriptions.belongsTo(models.Restaurants, {
+      onDelete: 'CASCADE',
+      foreignKey: {allowNull: true, },
+    });
+  };
+
+  Subscriptions.associate = (models) => {
+    Subscriptions.belongsTo(models.Recipes, {
+      onDelete: 'CASCADE',
+      foreignKey: {allowNull: true, },
+    });
+  };
+
   return Subscriptions;
 }
