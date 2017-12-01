@@ -1,11 +1,11 @@
-#Controllers
+# Controllers
 Controllers should deal solely with a single table
 Controller functions for 1:n should go on the belongsTo model controller
 Controller functions for n:m should go on whichever model controller makes grammatical sense
 Any multi-model controller function should be in an api controller utilizing each model controller
 
-#Models
-###example sequelize model
+# Models
+### example sequelize model
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
   return Task;
 };
 
-###When using n:m relation ships use the following format
+### When using n:m relation ships use the following format
 Students.associate = (models) => {
     Students.belongsToMany(models.Classes);
   };
