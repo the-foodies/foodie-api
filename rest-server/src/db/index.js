@@ -1,15 +1,10 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as Sequelize from 'sequelize';
-import { sql } from './config/config';
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const sql = require('./config/config.js');
 
 const sequelize = new Sequelize(sql.database, sql.username, sql.password, sql.options);
-
-interface sqlDB {
-  [key: string]: any,
-};
-
-const db: sqlDB = {};
+const db = {};
 
 fs
   .readdirSync(path.join(__dirname, '/models'))
@@ -41,4 +36,4 @@ db.sequelize
 
 db.sequelize.sync();
 
-export { db };
+module.exports = db;

@@ -1,5 +1,3 @@
-import * as Sequelize from 'sequelize';
-
 module.exports = (Sequelize, DataTypes) => {
   const Subscriptions = Sequelize.define('Subscriptions', {
     typeSubscriptions: DataTypes.STRING,
@@ -8,7 +6,7 @@ module.exports = (Sequelize, DataTypes) => {
   Subscriptions.associate = (models) => {
     Subscriptions.belongsTo(models.Users, {
       onDelete: 'CASCADE',
-      foreignKey: {allowNull: false, },
+      foreignKey: { allowNull: false },
     });
   };
 
@@ -16,23 +14,23 @@ module.exports = (Sequelize, DataTypes) => {
     Subscriptions.belongsTo(models.Users, {
       as: 'userSubscribedTo',
       onDelete: 'CASCADE',
-      foreignKey: {allowNull: true, },
+      foreignKey: { allowNull: true },
     });
   };
 
   Subscriptions.associate = (models) => {
     Subscriptions.belongsTo(models.Restaurants, {
       onDelete: 'CASCADE',
-      foreignKey: {allowNull: true, },
+      foreignKey: { allowNull: true },
     });
   };
 
   Subscriptions.associate = (models) => {
     Subscriptions.belongsTo(models.Recipes, {
       onDelete: 'CASCADE',
-      foreignKey: {allowNull: true, },
+      foreignKey: { allowNull: true },
     });
   };
 
   return Subscriptions;
-}
+};
