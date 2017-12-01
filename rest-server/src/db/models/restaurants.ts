@@ -6,17 +6,25 @@ module.exports = (Sequelize, DataTypes) => {
   });
 
   Restaurants.associate = (models) => {
-    Restaurants.belongsToMany(models.Categories, { through: 'categories_restaurants'});
+    Restaurants.belongsToMany(models.Users, {
+      through: 'restaurants_users'
+    });
   };
-  Categories.associate = (models) => {
-    Categories.belongsToMany(models.Restaurants, { through: 'categories_restaurants'});
+  Users.associate = (models) => {
+    Users.belongsToMany(models.Restaurants, {
+      through: 'restaurants_users'
+    });
   };
 
   Restaurants.associate = (models) => {
-    Restaurants.belongsToMany(models.Users, { through: 'restaurants_users'});
+    Restaurants.belongsToMany(models.Categories, {
+      through: 'categories_restaurants'
+    });
   };
-  Users.associate = (models) => {
-    Users.belongsToMany(models.Restaurants, { through: 'restaurants_users'});
+  Categories.associate = (models) => {
+    Categories.belongsToMany(models.Restaurants, {
+      through: 'categories_restaurants'
+    });
   };
 
   Restaurants.associate = (models) => {
