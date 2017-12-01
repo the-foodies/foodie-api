@@ -37,10 +37,10 @@ module.exports = (sequelize, DataTypes) => {
   return Task;
 };
 
-### When using n:m relation ships use the following format
+### When using n:m relationships use the following format
 Students.associate = (models) => {
-    Students.belongsToMany(models.Classes);
+    Students.belongsToMany(models.Classes, {through: 'classes_students'});
   };
 Classes.associate = (models) => {
-  Classes.belongsToMany(models.Classes);
+  Classes.belongsToMany(models.Students, {through: 'classes_students'});
 };
