@@ -20,11 +20,8 @@ module.exports = (Sequelize, DataTypes) => {
   });
 
   Users.associate = (models) => {
-    Users.belongsToMany(models.Subscriptions, {
-      through: 'subscriptions_users',
-    });
     Users.belongsToMany(models.Recipes, {
-      through: 'categories_recipes',
+      through: 'recipes_users',
     });
     Users.belongsToMany(models.Restaurants, {
       through: 'categories_restaurants',

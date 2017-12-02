@@ -13,14 +13,10 @@ module.exports = (Sequelize, DataTypes) => {
 
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Users, {
-      onDelete: 'CASCADE',
       through: 'recipes_users',
     });
     Recipes.belongsToMany(models.Categories, {
       through: 'categories_recipes',
-    });
-    Recipes.belongsToMany(models.Subscriptions, {
-      through: 'recipes_subscriptions',
     });
     Recipes.belongsToMany(models.Ingredients, {
       through: 'ingredients_recipes',
