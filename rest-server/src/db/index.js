@@ -6,13 +6,21 @@ const sql = require('./config/config.js');
 const sequelize = new Sequelize(sql.database, sql.username, sql.password, sql.options);
 const db = {};
 
-fs
-  .readdirSync(path.join(__dirname, '/models'))
-  .filter(file => file.indexOf('.') !== 0)
-  .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, '/models', file));
-    db[model.name] = model;
-  });
+const dir = path.join(__dirname, './models');
+const walkModels = (directory) => {
+  fs
+    .readdirSync(directory)
+    .filter(file => file.indexOf('.') !== 0)
+    .forEach((file) => {
+      if (fs.statSync(path.join(directory, file)).isDirectory()) {
+        walkModels(path.join(directory, file));
+      } else {
+        const model = sequelize.import(path.join(directory, file));
+        db[model.name] = model;
+      }
+    });
+};
+walkModels(dir);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
