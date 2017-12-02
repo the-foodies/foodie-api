@@ -11,39 +11,24 @@ module.exports = (Sequelize, DataTypes) => {
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Users, {
       onDelete: 'CASCADE',
-      through: 'recipes_users'
+      through: 'recipes_users',
     });
   };
-  Users.associate = (models) => {
-    Users.belongsToMany(models.Recipes, {
-      onDelete: 'CASCADE',
-      through: 'recipes_users'
-    });
-  };
+
 
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Categories, {
-      through: 'categories_recipes'
-    });
-  };
-  Categories.associate = (models) => {
-    Categories.belongsToMany(models.Recipes, {
-      through: 'categories_recipes'
+      through: 'categories_recipes',
     });
   };
 
+
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Subscriptions, {
-      foreignKey: {allowNull: true, },
-      through: 'recipes_subscriptions',
-    });
-  };
-  Subscriptions.associate = (models) => {
-    Subscriptions.belongsToMany(models.Recipes, {
-      foreignKey: {allowNull: true, },
+      foreignKey: { allowNull: true },
       through: 'recipes_subscriptions',
     });
   };
 
   return Recipes;
-}
+};

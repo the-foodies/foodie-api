@@ -13,30 +13,15 @@ module.exports = (Sequelize, DataTypes) => {
       through: 'subscriptions_users',
     });
   };
-  Subscriptions.associate = (models) => {
-    Subscriptions.belongsToMany(models.Users, {
-      through: 'subscriptions_users',
-    });
-  };
 
   Users.associate = (models) => {
     Users.belongsToMany(models.Recipes, {
       through: 'categories_recipes',
     });
   };
-  Recipes.associate = (models) => {
-    Recipes.belongsToMany(models.Users, {
-      through: 'categories_recipes',
-    });
-  };
 
   Users.associate = (models) => {
     Users.belongsToMany(models.Restaurants, {
-      through: 'categories_restaurants',
-    });
-  };
-  Restaurants.associate = (models) => {
-    Restaurants.belongsToMany(models.Users, {
       through: 'categories_restaurants',
     });
   };
