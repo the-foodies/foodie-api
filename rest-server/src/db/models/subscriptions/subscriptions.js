@@ -1,6 +1,9 @@
 module.exports = (Sequelize, DataTypes) => {
   const Subscriptions = Sequelize.define('Subscriptions', {
-    typeSubscriptions: DataTypes.STRING,
+    typeSubscriptions: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 
   Subscriptions.associate = (models) => {

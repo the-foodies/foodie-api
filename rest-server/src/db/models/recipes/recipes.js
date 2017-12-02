@@ -1,6 +1,9 @@
 module.exports = (Sequelize, DataTypes) => {
   const Recipes = Sequelize.define('Recipes', {
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     fat: DataTypes.STRING,
     calories: DataTypes.STRING,
     protein: DataTypes.STRING,
@@ -15,17 +18,14 @@ module.exports = (Sequelize, DataTypes) => {
     });
   };
 
-
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Categories, {
       through: 'categories_recipes',
     });
   };
 
-
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Subscriptions, {
-      foreignKey: { allowNull: true },
       through: 'recipes_subscriptions',
     });
   };

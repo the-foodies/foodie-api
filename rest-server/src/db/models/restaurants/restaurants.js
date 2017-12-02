@@ -1,6 +1,9 @@
 module.exports = (Sequelize, DataTypes) => {
   const Restaurants = Sequelize.define('Restaurants', {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     address: DataTypes.STRING,
     description: DataTypes.STRING,
   });
