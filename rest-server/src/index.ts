@@ -36,17 +36,9 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
-app.use(express.static(path.join(__dirname, '../class-tracker-ui/angular')));
-
 // routes
 app.get('/', (req, res) => {
   res.send();
 })
-
-// ui-router catch all
-app.all('/*', (req, res, next) => {
-  console.log('suh dude');
-  res.sendFile(path.join(__dirname, '../class-tracker-ui/angular/index.html'));
-});
 
 app.listen(4420, () => console.log('Example app listening on port 4420!'));
