@@ -12,15 +12,9 @@ module.exports = (Sequelize, DataTypes) => {
     Restaurants.belongsToMany(models.Users, {
       through: 'restaurants_users',
     });
-  };
-
-  Restaurants.associate = (models) => {
     Restaurants.belongsToMany(models.Categories, {
       through: 'categories_restaurants',
     });
-  };
-
-  Restaurants.associate = (models) => {
     Restaurants.belongsToMany(models.Subscriptions, {
       foreignKey: { allowNull: true },
       through: 'restaurants_subscriptions',

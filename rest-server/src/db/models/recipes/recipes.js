@@ -16,24 +16,17 @@ module.exports = (Sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       through: 'recipes_users',
     });
-  };
-
-  Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Categories, {
       through: 'categories_recipes',
     });
-  };
-
-  Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Subscriptions, {
       through: 'recipes_subscriptions',
     });
-  };
-
-  Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Ingredients, {
       through: 'ingredients_recipes',
     });
+    Recipes.hasMany(models.Directions);
+    Recipes.hasMany(models.ImagesRecipes);
   };
 
   return Recipes;

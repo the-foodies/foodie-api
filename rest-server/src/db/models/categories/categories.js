@@ -14,9 +14,6 @@ module.exports = (Sequelize, DataTypes) => {
     Categories.belongsToMany(models.Restaurants, {
       through: 'categories_restaurants',
     });
-  };
-
-  Categories.associate = (models) => {
     Categories.belongsToMany(models.Recipes, {
       through: 'categories_recipes',
     });

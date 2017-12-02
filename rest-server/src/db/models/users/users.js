@@ -23,15 +23,9 @@ module.exports = (Sequelize, DataTypes) => {
     Users.belongsToMany(models.Subscriptions, {
       through: 'subscriptions_users',
     });
-  };
-
-  Users.associate = (models) => {
     Users.belongsToMany(models.Recipes, {
       through: 'categories_recipes',
     });
-  };
-
-  Users.associate = (models) => {
     Users.belongsToMany(models.Restaurants, {
       through: 'categories_restaurants',
     });
