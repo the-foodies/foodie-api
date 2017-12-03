@@ -24,7 +24,7 @@ module.exports = (Sequelize, DataTypes) => {
       through: 'recipes_users',
     });
     Users.belongsToMany(models.Restaurants, {
-      through: 'categories_restaurants',
+      through: 'restaurants_users',
     });
   };
 

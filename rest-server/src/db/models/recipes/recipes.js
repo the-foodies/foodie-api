@@ -4,11 +4,11 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fat: DataTypes.STRING,
-    calories: DataTypes.STRING,
-    protein: DataTypes.STRING,
-    rating: DataTypes.STRING,
-    sodium: DataTypes.STRING,
+    fat: DataTypes.INTEGER,
+    calories: DataTypes.INTEGER,
+    protein: DataTypes.INTEGER,
+    rating: DataTypes.INTEGER,
+    sodium: DataTypes.INTEGER,
   });
 
   Recipes.associate = (models) => {

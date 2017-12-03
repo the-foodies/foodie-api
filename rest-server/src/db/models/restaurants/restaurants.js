@@ -4,7 +4,11 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    address: DataTypes.STRING,
+    streetAddress1: DataTypes.STRING,
+    streetAddress2: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    zipCode: DataTypes.STRING,
     description: DataTypes.STRING,
   });
 
