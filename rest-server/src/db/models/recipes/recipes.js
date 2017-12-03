@@ -1,33 +1,28 @@
 module.exports = (Sequelize, DataTypes) => {
   const Recipes = Sequelize.define('Recipes', {
-    title: DataTypes.STRING,
-    fat: DataTypes.STRING,
-    calories: DataTypes.STRING,
-    protein: DataTypes.STRING,
-    rating: DataTypes.STRING,
-    sodium: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    fat: DataTypes.INTEGER,
+    calories: DataTypes.INTEGER,
+    protein: DataTypes.INTEGER,
+    rating: DataTypes.INTEGER,
+    sodium: DataTypes.INTEGER,
   });
 
   Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Users, {
-      onDelete: 'CASCADE',
       through: 'recipes_users',
     });
-  };
-
-
-  Recipes.associate = (models) => {
     Recipes.belongsToMany(models.Categories, {
       through: 'categories_recipes',
     });
-  };
-
-
-  Recipes.associate = (models) => {
-    Recipes.belongsToMany(models.Subscriptions, {
-      foreignKey: { allowNull: true },
-      through: 'recipes_subscriptions',
+    Recipes.belongsToMany(models.Ingredients, {
+      through: 'ingredients_recipes',
     });
+    Recipes.hasMany(models.Directions);
+    Recipes.hasMany(models.ImagesRecipes);
   };
 
   return Recipes;

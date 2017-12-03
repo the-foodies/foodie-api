@@ -1,7 +1,14 @@
 module.exports = (Sequelize, DataTypes) => {
   const Restaurants = Sequelize.define('Restaurants', {
-    name: DataTypes.STRING,
-    address: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    streetAddress1: DataTypes.STRING,
+    streetAddress2: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    zipCode: DataTypes.STRING,
     description: DataTypes.STRING,
   });
 
@@ -9,18 +16,8 @@ module.exports = (Sequelize, DataTypes) => {
     Restaurants.belongsToMany(models.Users, {
       through: 'restaurants_users',
     });
-  };
-
-  Restaurants.associate = (models) => {
     Restaurants.belongsToMany(models.Categories, {
       through: 'categories_restaurants',
-    });
-  };
-
-  Restaurants.associate = (models) => {
-    Restaurants.belongsToMany(models.Subscriptions, {
-      foreignKey: { allowNull: true },
-      through: 'restaurants_subscriptions',
     });
   };
 
