@@ -3,6 +3,10 @@
   "rules": {
     "func-names": ["error", "never"],
     "arrow-body-style": ["error", "as-needed"],
+    "object-curly-newline": ["error", {
+      "ObjectExpression": "always",
+      "ObjectPattern": { "multiline": true }
+    }],
     "no-console": 0,
     "no-plusplus": 0,
     "consistent-return": 0,
