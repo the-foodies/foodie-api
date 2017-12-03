@@ -1,6 +1,6 @@
 const db = require('../../index');
 
-const createRecipe = async ({ title, fat, calories, protein, rating, sodium }) => {
+const createUserRecipe = async ({ title, fat, calories, protein, rating, sodium }, user) => {
   await db.Recipes.create({
     title,
     fat,
@@ -8,13 +8,9 @@ const createRecipe = async ({ title, fat, calories, protein, rating, sodium }) =
     protein,
     rating,
     sodium,
+  }).then((newRecipe) => {
+    newRecipe.addUser(user);
   });
 };
 
-const addRecipeToUser = async (recipe, user) => {
-  createRecipe(recipe).then((newRecipe) => {
-    newRecipe.setUser(user);
-  });
-};
-
-module.exports = addRecipeToUser;
+module.exports = createUserRecipe;

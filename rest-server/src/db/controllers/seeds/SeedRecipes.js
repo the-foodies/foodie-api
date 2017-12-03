@@ -1,5 +1,6 @@
 const data = require('../../seedData/full_format_recipes');
-const addRecipeToUser = require('../recipes/CreateRecipe');
+const createUserRecipe = require('../recipes/CreateRecipe');
+const db = require('../../index');
 
 for (let i = 0; i < 10; i++) {
   const recipe = {
@@ -11,5 +12,7 @@ for (let i = 0; i < 10; i++) {
     sodium: data[i].sodium,
   };
   const randUser = (1 + Math.floor(Math.random() * 5));
-  addRecipeToUser(recipe, randUser);
+  db.Users.findOne({ where: { id: randUser } }).then((user) => {
+    createUserRecipe(recipe, user);
+  });
 }
