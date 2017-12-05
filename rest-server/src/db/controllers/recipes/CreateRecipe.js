@@ -8,9 +8,10 @@ const createUserRecipe = async ({ title, fat, calories, protein, rating, sodium 
     protein,
     rating,
     sodium,
-  }).then((newRecipe) => {
-    newRecipe.addUser(user);
-  });
+  })
+    .then((newRecipe) => {
+      newRecipe.addUser(user);
+    });
 };
 
 module.exports = createUserRecipe;
