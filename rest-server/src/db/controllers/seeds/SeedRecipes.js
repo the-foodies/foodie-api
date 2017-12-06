@@ -10,9 +10,12 @@ for (let i = 0; i < 10; i++) {
     protein: data[i].protein,
     rating: data[i].rating,
     sodium: data[i].sodium,
+    directions: data[i].directions,
+    ingredients: data[i].ingredients,
+    tags: data[i].categories,
   };
   const randUser = (1 + Math.floor(Math.random() * 5));
   db.Users.findOne({ where: { id: randUser } }).then((user) => {
-    createUserRecipe(recipe, user);
+    createUserRecipe(user, recipe);
   });
 }

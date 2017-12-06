@@ -2,11 +2,8 @@
   "extends": "airbnb-base",
   "rules": {
     "func-names": ["error", "never"],
-    "arrow-body-style": ["error", "as-needed"],
-    "object-curly-newline": ["error", {
-      "ObjectExpression": "always",
-      "ObjectPattern": { "multiline": true }
-    }],
+    "arrow-body-style": ["error", "always"],
+    "object-curly-newline": ["error", { "consistent": true }],
     "no-console": 0,
     "no-plusplus": 0,
     "consistent-return": 0,

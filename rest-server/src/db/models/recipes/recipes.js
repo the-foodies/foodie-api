@@ -7,7 +7,7 @@ module.exports = (Sequelize, DataTypes) => {
     fat: DataTypes.INTEGER,
     calories: DataTypes.INTEGER,
     protein: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER,
+    rating: DataTypes.FLOAT,
     sodium: DataTypes.INTEGER,
   });
 
@@ -15,13 +15,11 @@ module.exports = (Sequelize, DataTypes) => {
     Recipes.belongsToMany(models.Users, {
       through: 'recipes_users',
     });
-    Recipes.belongsToMany(models.Categories, {
-      through: 'categories_recipes',
-    });
-    Recipes.belongsToMany(models.Ingredients, {
-      through: 'ingredients_recipes',
+    Recipes.belongsToMany(models.Tags, {
+      through: 'tags_recipes',
     });
     Recipes.hasMany(models.Directions);
+    Recipes.hasMany(models.Ingredients);
     Recipes.hasMany(models.ImagesRecipes);
   };
 

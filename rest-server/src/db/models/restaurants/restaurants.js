@@ -4,21 +4,19 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    streetAddress1: DataTypes.STRING,
-    streetAddress2: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zipCode: DataTypes.STRING,
-    description: DataTypes.STRING,
+    address: DataTypes.STRING,
+    website: DataTypes.STRING,
   });
 
   Restaurants.associate = (models) => {
     Restaurants.belongsToMany(models.Users, {
       through: 'restaurants_users',
     });
-    Restaurants.belongsToMany(models.Categories, {
-      through: 'categories_restaurants',
+    Restaurants.belongsToMany(models.Tags, {
+      through: 'tags_restaurants',
     });
+    Restaurants.hasMany(models.ImagesRestaurants);
+    Restaurants.hasMany(models.FoodItems);
   };
 
   return Restaurants;
