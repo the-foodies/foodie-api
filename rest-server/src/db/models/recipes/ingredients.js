@@ -7,8 +7,9 @@ module.exports = (Sequelize, DataTypes) => {
   });
 
   Ingredients.associate = (models) => {
-    Ingredients.belongsToMany(models.Recipes, {
-      through: 'ingredients_recipes',
+    Ingredients.belongsTo(models.Recipes, {
+      onDelete: 'CASCADE',
+      foreignKey: { allowNull: false },
     });
   };
 

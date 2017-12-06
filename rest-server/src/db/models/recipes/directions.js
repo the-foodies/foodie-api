@@ -1,7 +1,11 @@
 module.exports = (Sequelize, DataTypes) => {
   const Directions = Sequelize.define('Directions', {
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1337),
+      allowNull: false,
+    },
+    dirOrder: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
