@@ -1,7 +1,5 @@
 language: node_js
 node_js: node
-services:
-  - mysql
 cache:
   directories:
     - node_modules
@@ -11,5 +9,4 @@ script:
   - npm run build:rest
   - npm run start:rest
   - sleep 10
-  - npm run sync:db
   - npm test
