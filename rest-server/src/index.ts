@@ -4,18 +4,16 @@ import * as session from 'express-session';
 import * as redis from 'redis';
 import * as bodyParser from 'body-parser';
 import * as Redis from 'connect-redis';
+import * as catalog from '../src/routes/catalog';
 
 //might not work \/\/
 const RedisStore = Redis(session);
-
-// middleware
-import { router } from './routes';
 
 const app = express();
 const client = redis.createClient();
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:1337');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -33,12 +31,17 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true,
+  extended: false,
 }));
+app.use(express.static(path.join(__dirname, '../../../foodie-ui/build/')));
+
+//middleware
+app.use('/api', catalog);
 
 // routes
-app.get('/', (req, res) => {
-  res.send();
-})
+app.get('/*', (req, res) => {
+  const pathUrl = path.resolve(__dirname, '../../../foodie-ui/build/index.html')
+  res.sendFile(pathUrl);
+});
 
 app.listen(4420, () => console.log('Example app listening on port 4420!'));

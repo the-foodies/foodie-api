@@ -4,6 +4,7 @@
     "removeComments": true,
     "module": "commonjs",
     "outDir": "dist",
+    "allowJs": true,
     "sourceMap": true,
     "typeRoots": [
       "../node_modules/@types"
