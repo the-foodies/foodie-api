@@ -1,4 +1,4 @@
-const db = require('../../index');
+import db from '../../';
 
 const createUserRecipe = async (user, {
   title,
@@ -42,4 +42,4 @@ const createUserRecipe = async (user, {
   });
 };
 
-module.exports = createUserRecipe;
+export default createUserRecipe;

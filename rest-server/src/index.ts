@@ -4,7 +4,8 @@ import * as session from 'express-session';
 import * as redis from 'redis';
 import * as bodyParser from 'body-parser';
 import * as Redis from 'connect-redis';
-import * as catalog from '../src/routes/catalog';
+
+import catalog from '../src/routes/catalog';
 
 //might not work \/\/
 const RedisStore = Redis(session);

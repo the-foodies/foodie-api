@@ -1,10 +1,10 @@
 const recipeController = {
-  postRecipe: () => {
+  postRecipe: (req, res) => {
 
   },
 
-  getRecipes: () => {
-
+  getRecipes: (req, res) => {
+    
   },
 };
 

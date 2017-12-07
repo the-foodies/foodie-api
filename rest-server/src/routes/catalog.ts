@@ -19,4 +19,4 @@ router.post('/users', userController.postUser);
 
 router.get('/users', userController.getUsers);
 
-module.exports = router;
+export default router;

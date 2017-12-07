@@ -1,4 +1,4 @@
-const db = require('../../index');
+import db from '../../';
 
 const addRestaurantComment = async (user, restaurant, { title, text }) => {
   await db.Comments.create({
@@ -8,4 +8,4 @@ const addRestaurantComment = async (user, restaurant, { title, text }) => {
   });
 };
 
-module.exports = addRestaurantComment;
+export default addRestaurantComment;
