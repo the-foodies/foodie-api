@@ -1,4 +1,4 @@
-const db = require('../../index');
+import db from '../../';
 
 const createUserSubscription = async (user, subUser, { typeOfSubscription }) => {
   await db.Subscriptions.create({
@@ -8,4 +8,4 @@ const createUserSubscription = async (user, subUser, { typeOfSubscription }) => 
   });
 };
 
-module.exports = createUserSubscription;
+export default createUserSubscription;

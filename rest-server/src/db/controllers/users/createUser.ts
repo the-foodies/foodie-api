@@ -1,4 +1,4 @@
-const db = require('../../index');
+import db from '../../';
 
 const createUser = async ({ firstName, lastName, email, displayName, profileImageUrl }) => {
   await db.Users.create({
@@ -10,4 +10,4 @@ const createUser = async ({ firstName, lastName, email, displayName, profileImag
   });
 };
 
-module.exports = createUser;
+export default createUser;

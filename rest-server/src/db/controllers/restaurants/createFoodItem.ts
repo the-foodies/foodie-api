@@ -1,6 +1,6 @@
-const db = require('../../index');
+import db from '../../';
 
-const createRestaurantFoodItem = async (user, restaurant, items) => {
+const createFoodItem = async (user, restaurant, items) => {
   const newRestaurant = await db.Restaurants.findOrCreate({ where: { name: restaurant.name },
     defaults: { address: restaurant.address, website: restaurant.website } });
   await newRestaurant[0].addUser(user);
@@ -21,4 +21,4 @@ const createRestaurantFoodItem = async (user, restaurant, items) => {
   });
 };
 
-module.exports = createRestaurantFoodItem;
+export default createFoodItem;

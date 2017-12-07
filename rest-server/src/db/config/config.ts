@@ -1,10 +1,11 @@
-export const sql = {
-  database: '',
-  username: '',
-  password: '',
+export default {
+  database: 'foodie_db',
+  username: 'root',
+  password: 'zacrootswag',
   options: {
-    dialect: '',
-    host: '',
+    dialect: 'mysql',
+    host: 'localhost',
+    port: 3420,
     operatorAliases: false,
     timestamps: false,
   },

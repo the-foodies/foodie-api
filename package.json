@@ -7,7 +7,11 @@
     "test": "jest",
     "build:rest": "cd rest-server && gulp scripts",
     "start:rest": "cd rest-server/dist && nodemon index.js &",
-    "sync:db": "cd rest-server/src/db && node index.js"
+    "sync:db": "cd rest-server/dist/db && node index.js",
+    "seed:users": "cd rest-server/dist/db/controllers/seeds && node seedUsers.js",
+    "seed:restaurants": "cd rest-server/dist/db/controllers/seeds && node seedRestaurants.js",
+    "seed:recipes": "cd rest-server/dist/db/controllers/seeds && node seedRecipes.js",
+    "seed:db": "npm-run-all -s seed:users seed:recipes seed:restaurants"
   },
   "keywords": [],
   "author": "",

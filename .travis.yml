@@ -7,6 +7,6 @@ install:
   - npm install
 script:
   - npm run build:rest
-  - npm run start:rest
+  - npm run start:rest &
   - sleep 10
   - npm test

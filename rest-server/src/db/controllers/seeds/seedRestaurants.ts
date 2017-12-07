@@ -1,6 +1,7 @@
-const data = require('../../seedData/restaurants');
-const createRestaurantFoodItem = require('../restaurants/CreateFoodItem');
-const db = require('../../index');
+import db from '../../';
+import { createFoodItem } from '../restaurants';
+
+const data = require('../../seedData/restaurants.json');
 
 const testItem = {
   name: 'Test Food',
@@ -18,6 +19,6 @@ for (let i = 0; i < 10; i++) {
   testItem.description = data[i].description;
   const randUser = (1 + Math.floor(Math.random() * 5));
   db.Users.findOne({ where: { id: randUser } }).then((user) => {
-    createRestaurantFoodItem(user, restaurant, [testItem, testItem]);
+    createFoodItem(user, restaurant, [testItem, testItem]);
   });
 }
