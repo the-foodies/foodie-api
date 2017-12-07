@@ -38,6 +38,7 @@ app.use(bodyParser.urlencoded({
   extended: false,
 }));
 
+<<<<<<< 19f314cf6ae8541cd09af2794d2aa35d3ae5c5a9
 // routes
 app.post('/login', login);
 app.post('/logout', logout);
@@ -48,4 +49,6 @@ app.use((req, res) => {
   res.status(404).send('LUL wrong page');
 })
 
+=======
+>>>>>>> pull commit
 app.listen(4420, () => console.log('Example app listening on port 4420!'));
