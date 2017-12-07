@@ -5,9 +5,13 @@ import * as redis from 'redis';
 import * as bodyParser from 'body-parser';
 import * as Redis from 'connect-redis';
 
-import catalog from './routes/catalog';
+import isLoggedIn from './middleware/isLoggedIn';
 
-//might not work \/\/
+import catalog from './routes/catalog';
+import login from './routes/login';
+import signup from './routes/signup';
+import logout from './routes/logout';
+
 const RedisStore = Redis(session);
 
 const app = express();
@@ -18,7 +22,6 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
 app.use(session({
   secret: 'get dat paper yo',
   saveUninitialized: false,
@@ -26,17 +29,23 @@ app.use(session({
   store: new RedisStore({
     host: 'localhost',
     port: 6379,
+    ttl: 3600,
     client,
   }),
 }));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
-app.use(express.static(path.join(__dirname, '../../../foodie-ui/build/')));
 
-//middleware
-app.use('/api', catalog);
+// routes
+app.post('/login', login);
+app.post('/logout', logout);
+app.post('/signup', signup);
+app.use('/api', isLoggedIn, catalog);
+
+app.use((req, res) => {
+  res.status(404).send('LUL wrong page');
+})
 
 app.listen(4420, () => console.log('Example app listening on port 4420!'));
