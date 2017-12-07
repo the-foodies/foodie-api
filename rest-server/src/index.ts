@@ -38,10 +38,4 @@ app.use(express.static(path.join(__dirname, '../../../foodie-ui/build/')));
 //middleware
 app.use('/api', catalog);
 
-// routes
-app.get('/*', (req, res) => {
-  const pathUrl = path.resolve(__dirname, '../../../foodie-ui/build/index.html')
-  res.sendFile(pathUrl);
-});
-
 app.listen(4420, () => console.log('Example app listening on port 4420!'));
