@@ -1,4 +1,4 @@
-const createUser = require('../users/CreateUser');
+import { createUser } from '../users'
 
 const randomStr = () => {
   let text = '';

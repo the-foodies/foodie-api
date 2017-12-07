@@ -1,6 +1,7 @@
-const data = require('../../seedData/full_format_recipes');
-const createUserRecipe = require('../recipes/CreateRecipe');
-const db = require('../../index');
+import { createUserRecipe } from '../recipes';
+import db from '../../';
+
+const data = require('../../seedData/full_format_recipes.json');
 
 for (let i = 0; i < 10; i++) {
   const recipe = {

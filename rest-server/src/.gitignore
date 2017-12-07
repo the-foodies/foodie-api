@@ -1,4 +1,5 @@
 #sql db config 
 db/config/config.js
+db/config/config.ts
 db/config/config_test.js
 db/seedData

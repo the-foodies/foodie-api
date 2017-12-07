@@ -1,9 +1,24 @@
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const sql = require('./config/config.js');
+import * as fs from 'fs';
+import * as path from 'path';
+import * as Sequelize from 'sequelize';
+import sql from  './config/config';
 
 const sequelize = new Sequelize(sql.database, sql.username, sql.password, sql.options);
+
+type Model = Sequelize.Model;
+interface DbConnection {
+  Comments: Model,
+  Recipes: Model,
+  Directions: Model,
+  ImagesRecipes: Model,
+  Ingredients: Model,
+  Restaurants: Model,
+  FoodItems: Model,
+  ImagesRestaurants: Model,
+  Subscriptions: Model,
+  Tags: Model,
+  Users: Model,
+}
 const db = {};
 
 const dir = path.join(__dirname, './models');
@@ -28,8 +43,8 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db['sequelize'] = sequelize;
+db['Sequelize'] = Sequelize;
 
 db.sequelize
   .authenticate()
@@ -44,4 +59,4 @@ db.sequelize
 
 db.sequelize.sync();
 
-module.exports = db;
+export default <DbConnection>db;
