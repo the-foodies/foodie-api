@@ -5,7 +5,7 @@ import * as redis from 'redis';
 import * as bodyParser from 'body-parser';
 import * as Redis from 'connect-redis';
 
-import catalog from '../src/routes/catalog';
+import catalog from './routes/catalog';
 
 //might not work \/\/
 const RedisStore = Redis(session);
@@ -38,11 +38,5 @@ app.use(express.static(path.join(__dirname, '../../../foodie-ui/build/')));
 
 //middleware
 app.use('/api', catalog);
-
-// routes
-app.get('/*', (req, res) => {
-  const pathUrl = path.resolve(__dirname, '../../../foodie-ui/build/index.html')
-  res.sendFile(pathUrl);
-});
 
 app.listen(4420, () => console.log('Example app listening on port 4420!'));
