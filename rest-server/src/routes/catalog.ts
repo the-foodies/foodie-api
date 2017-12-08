@@ -2,6 +2,7 @@ import * as express from 'express';
 import restaurantController from '../serverControllers/restaurantController';
 import recipeController from '../serverControllers/recipeController';
 import userController from '../serverControllers/userController';
+import getPosts from '../serverControllers/postController';
 
 const router = express.Router();
 
@@ -18,5 +19,7 @@ router.get('/recipes', recipeController.getRecipes);
 router.post('/users', userController.postUser);
 
 router.get('/users', userController.getUsers);
+
+router.get('/posts', getPosts);
 
 export default router;
