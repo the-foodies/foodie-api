@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "dev:rest": "cd rest-server && gulp",
     "build:rest": "cd rest-server && gulp scripts",
     "start:rest": "cd rest-server/dist && nodemon index.js &",
     "sync:db": "cd rest-server/dist/db && node index.js",
@@ -37,6 +38,12 @@
     "jest": "^21.2.1",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.2",
+    "sqlite3": "^3.1.13",
     "typescript": "^2.6.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "./rest-server/tests/beforeAll.js"
+    ]
   }
 }
