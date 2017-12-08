@@ -1,7 +1,7 @@
-const express = require('express');
-const restaurantController = require('../serverControllers/restaurantController');
-const recipeController = require('../serverControllers/recipeController');
-const userController = require('../serverControllers/userController');
+import * as express from 'express';
+import restaurantController from '../serverControllers/restaurantController';
+import recipeController from '../serverControllers/recipeController';
+import userController from '../serverControllers/userController';
 
 const router = express.Router();
 
