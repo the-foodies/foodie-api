@@ -21,6 +21,7 @@ module.exports = (Sequelize, DataTypes) => {
     Recipes.hasMany(models.Directions);
     Recipes.hasMany(models.Ingredients);
     Recipes.hasMany(models.ImagesRecipes);
+    Recipes.hasMany(models.Comments);
   };
 
   return Recipes;

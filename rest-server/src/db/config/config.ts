@@ -1,11 +1,11 @@
 export default {
   database: 'foodie_db',
   username: 'root',
-  password: 'zacrootswag',
+  password: 'Omgacow11',
   options: {
     dialect: 'mysql',
     host: 'localhost',
-    port: 3420,
+    port: 3306,
     operatorAliases: false,
     timestamps: false,
     logging: false
