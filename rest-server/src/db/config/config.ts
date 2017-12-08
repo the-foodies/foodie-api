@@ -8,5 +8,6 @@ export default {
     port: 3420,
     operatorAliases: false,
     timestamps: false,
+    logging: false
   },
 };

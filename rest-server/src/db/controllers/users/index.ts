@@ -1,8 +1,8 @@
 import createUser from './createUser';
-import { getUserById, getIdByEmail } from './userQueries';
+import { getUserById, getUserByEmail } from './userQueries';
 
 export {
   createUser,
-  getIdByEmail,
+  getUserByEmail,
   getUserById,
 }

@@ -1,0 +1,29 @@
+// const db = require('./beforeAll');
+// const ctrls = require('../dist/db/controllers');
+
+// test('should connect to db', async () => {
+//   try {
+//     let isConnected = await db.sequelize.authenticate();
+//     console.log('IM HERE HELLO', isConnected);
+//     isConnected = true;
+//   } catch (error) {
+//     const isConnected = false;
+//   }
+//   await expect(isConnected).toEqual(true);
+// });
+
+// const UserMock = {
+//   firstName: 'Test',
+//   lastName: 'Person',
+//   email: 'test@test.com',
+//   displayName: 'testUser01',
+//   profileImageUrl: 'testImg.com',
+// };
+
+// test('should return user object with given id', async () => {
+//   await db.sequelize.sync();
+
+//   const newUser = await ctrls.createUser(UserMock);
+//   await expect(newUser.get({ plain: true })).resolves.toBeDefined();
+//   await expect(ctrls.getUserByEmail(UserMock.email)).toBeDefined();
+// });
