@@ -17,6 +17,8 @@ module.exports = (Sequelize, DataTypes) => {
     });
     Restaurants.hasMany(models.ImagesRestaurants);
     Restaurants.hasMany(models.FoodItems);
+    Restaurants.hasMany(models.Restaurants);
+    Restaurants.hasMany(models.Comments);
   };
 
   return Restaurants;

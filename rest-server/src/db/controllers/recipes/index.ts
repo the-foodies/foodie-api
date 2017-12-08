@@ -1,7 +1,8 @@
 import createUserRecipe from './createUserRecipe';
-import { getRecipeById } from './recipeQueries';
+import { getRecipeById, getUserRecipes } from './recipeQueries';
 
 export {
   createUserRecipe,
   getRecipeById,
+  getUserRecipes,
 }
