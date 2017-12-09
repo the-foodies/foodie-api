@@ -1,6 +1,6 @@
 import { addRecipeComment, addRestaurantComment } from './comments';
 import { createUserRecipe, getRecipeById, getUserRecipes } from './recipes';
-import { createFoodItem, getUserRestaurants } from './restaurants';
+import { createFoodItem, getUserRestaurants, getRestaurantById } from './restaurants';
 import { createSubscription } from './subscriptions';
 import { createUser, getUserByEmail, getUserById, getUserPosts } from './users';
 
@@ -9,6 +9,7 @@ export {
   addRestaurantComment,
   createUserRecipe,
   getRecipeById,
+  getRestaurantById,
   createFoodItem,
   createSubscription,
   createUser,

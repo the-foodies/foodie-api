@@ -1,7 +1,8 @@
 import createFoodItem from './createFoodItem';
-import { getUserRestaurants } from "./restaurantQueries";
+import { getUserRestaurants, getRestaurantById } from "./restaurantQueries";
 
 export {
   createFoodItem,
   getUserRestaurants,
+  getRestaurantById,
 }
