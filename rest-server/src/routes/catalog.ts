@@ -10,11 +10,11 @@ const router = express.Router();
 
 router.post('/restaurants', restaurantController.postRestaurant);
 
-router.get('/restaurants', restaurantController.getRestaurants);
+router.get('/restaurants', restaurantController.getRestaurant);
 
 router.post('/recipes', recipeController.postRecipe);
 
-router.get('/recipes', recipeController.getRecipes);
+router.get('/recipes', recipeController.getRecipe);
 
 router.post('/users', userController.postUser);
 

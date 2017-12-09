@@ -1,4 +1,4 @@
-import { getUserRecipes, createUserRecipe } from "../db/controllers/";
+import { getRecipeById, createUserRecipe } from "../db/controllers/";
 
 const recipeController = {
   postRecipe: async (req, res) => {
@@ -8,10 +8,10 @@ const recipeController = {
     res.send(newRecipe);
   },
 
-  getRecipes: async (req, res) => {
-    const userId = req.session.user.id;
-    const recipes = await getUserRecipes(userId);
-    res.send(recipes);
+  getRecipe: async (req, res) => {
+    const recipeId = req.query.id;
+    const recipe = await getRecipeById(recipeId);
+    res.send(recipe);
   },
 };
 

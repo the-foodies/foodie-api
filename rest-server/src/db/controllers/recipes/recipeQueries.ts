@@ -5,15 +5,6 @@ const getRecipeById = async (id) => {
     where: {
       id,
     },
-  }).then((data) => {
-    return {
-      title: data.dataValues.title,
-      fat: data.dataValues.fat,
-      calories: data.dataValues.calories,
-      protein: data.dataValues.protein,
-      rating: data.dataValues.rating,
-      sodium: data.dataValues.sodium,
-    };
   });
   return recipe;
 };
