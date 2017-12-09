@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -18,4 +18,4 @@ const keyword = new Schema({
   runSettersOnQuery: true,
 });
 
-module.exports = mongoose.model('Keyword', keyword);
+export default mongoose.model('Keyword', keyword);

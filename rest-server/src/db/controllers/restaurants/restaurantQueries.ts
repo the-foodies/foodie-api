@@ -1,6 +1,7 @@
 import db from '../../';
 
 const getUserRestaurants = async (userId) => {
+  console.log(userId)
   const restaurants = await db.Users.findOne({
     where: {
       id: userId,

@@ -5,12 +5,18 @@ import * as redis from 'redis';
 import * as bodyParser from 'body-parser';
 import * as Redis from 'connect-redis';
 
+import * as mongoose from 'mongoose';
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/foodieSearch', { useMongoClient: true });
+
 import isLoggedIn from './middleware/isLoggedIn';
 
 import catalog from './routes/catalog';
 import login from './routes/login';
 import signup from './routes/signup';
 import logout from './routes/logout';
+import search from './search-worker/controllers/searchKeyword'
 
 const RedisStore = Redis(session);
 
@@ -39,6 +45,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // routes
+app.get('/search', search);
 app.post('/login', login);
 app.post('/logout', logout);
 app.post('/signup', signup);

@@ -1,6 +1,6 @@
-const db = require('../db/models/');
+import { Keyword } from '../db/models';
 
-module.exports = async (req, res) => { 
+export default async (req, res) => { 
   const { tags, type, id, name } = req.body;
 
   const keywords = tags.map((tag) => {
@@ -11,6 +11,6 @@ module.exports = async (req, res) => {
       name,
     };
   });
-  const newKeyword = await db.Keyword.create(...keywords);
+  const newKeyword = await Keyword.create(...keywords);
   res.send(newKeyword);
 };
