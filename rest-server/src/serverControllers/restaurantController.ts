@@ -1,4 +1,4 @@
-import { createFoodItem, getUserRestaurants } from "../db/controllers/";
+import { createFoodItem, getRestaurantById } from "../db/controllers/";
 
 const restaurantController = {
   postRestaurant: async (req, res) => {
@@ -8,10 +8,10 @@ const restaurantController = {
     res.send(newRestaurant);
   },
 
-  getRestaurants: async (req, res) => {
-    const userId = req.session.user.id;
-    const restaurants = await getUserRestaurants(userId);
-    res.send(restaurants);
+  getRestaurant: async (req, res) => {
+    const restaurantId = req.query.id;
+    const restaurant = await getRestaurantById(restaurantId);
+    res.send(restaurant);
   },
 };
 
