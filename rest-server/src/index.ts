@@ -31,13 +31,19 @@ const client = redis.createClient();
 const PORT = process.env.REST_PORT || 4420;
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:1337');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
+  res.header('Access-Control-Allow-Credentials', 'true');  
+  if ('OPTIONS' === req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
 });
 app.use(session({
   secret: process.env.SESSION_SECRET || 'get dat paper yo',
-  saveUninitialized: false,
+  saveUninitialized: true,
   resave: false,
   store: new RedisStore({
     host: process.env.REDIS_HOST || 'localhost',
@@ -45,6 +51,7 @@ app.use(session({
     ttl: 3600,
     client,
   }),
+  proxy: true,
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

@@ -19,6 +19,7 @@ const createFoodItem = async (user, restaurant, items) => {
         tag.addRestaurant(newRestaurant[0]);
       });
   });
+  return id;
 };
 
 export default createFoodItem;
