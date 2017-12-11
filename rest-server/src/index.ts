@@ -9,10 +9,9 @@ import * as mongoose from 'mongoose';
 
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
-console.log(process.env);
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  process.env.MONGO_CONNECT,
+  process.env.MONGO_CONNECT || 'mongodb://localhost/foodieSearch',
   { useMongoClient: true },
 );
 
@@ -29,7 +28,7 @@ const RedisStore = Redis(session);
 const app = express();
 const client = redis.createClient();
 
-const PORT = process.env.PORT || 4420;
+const PORT = process.env.REST_PORT || 4420;
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
