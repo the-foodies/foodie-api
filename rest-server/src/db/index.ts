@@ -3,7 +3,19 @@ import * as path from 'path';
 import * as Sequelize from 'sequelize';
 import sql from  './config/config';
 
-const sequelize = new Sequelize(sql.database, sql.username, sql.password, sql.options);
+const sequelize = new Sequelize(
+  process.env.SQL_DATABASE || sql.database,
+  process.env.SQL_USERNAME || sql.username,
+  process.env.SQL_PASSWORD || sql.password,
+  {
+    dialect: 'mysql',
+    host: process.env.SQL_HOST || sql.options.host,
+    port: process.env.SQL_PORT || sql.options.port,
+    operatorAliases: false,
+    timestamps: false,
+    logging: false,
+  },
+  );
 
 type Model = Sequelize.Model;
 interface DbConnection {
