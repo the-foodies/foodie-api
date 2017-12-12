@@ -6,6 +6,13 @@ const createFoodItem = async (user, restaurant, items) => {
   await newRestaurant[0].addUser(user);
   const RestaurantId = await newRestaurant[0].get('id');
   const UserId = await user.get('id');
+  if (restaurant.imageURL) {
+    const newImage = await db.ImagesRestaurants.create({
+      RestaurantId,
+      UserId,
+      image_url: restaurant.imageURL,
+    })
+  }
   await items.forEach((item) => {
     db.FoodItems.create({
       name: item.name,

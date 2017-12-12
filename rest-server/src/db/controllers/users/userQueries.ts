@@ -19,6 +19,7 @@ const getUserById = async (id) => {
   return user;
 };
 const getUserPosts = async (userId) => {
+  console.log(userId);
   const recipes = await db.Users.findOne({
     where: {
       id: userId,
@@ -26,50 +27,81 @@ const getUserPosts = async (userId) => {
     include: [{
       model: db.Recipes,
       include: [
-        { model: db.Ingredients },
         { model: db.Directions },
+        { model: db.Ingredients },
         { model: db.ImagesRecipes },
         { model: db.Tags },
-        { model: db.Comments,
-          include: [{
-            model: db.Users
-          }],
+        {
+          model: db.Comments,
           where: {
             posterId: userId,
           },
-        },
-      ],
+          include: [{
+            model: db.Users
+          }],
+          required: false,
+        }
+      ]
     }],
+
   });
   const restaurants = await db.Users.findOne({
     where: {
       id: userId,
     },
     include: [{
-      model: db.FoodItems,
-      include: [{
-        model: db.Restaurants,
-        include: [
-          { model: db.ImagesRestaurants },
-          { model: db.Tags },
-          { model: db.Comments,
-            include: [{
-              model: db.Users
-            }],
-            where: {
-              posterId: userId,
-            },
+      model: db.Restaurants,
+      include: [
+        { model: db.ImagesRestaurants },
+        { model: db.Tags },
+        {
+          model: db.FoodItems,
+          where: {
+            UserId: userId,
+          }
+        },
+        {
+          model: db.Comments,
+          where: {
+            posterId: userId,
           },
-        ],
-      }],
-    }]
-  })
+          include: [{
+            model: db.Users
+          }],
+          required: false,
+        },
+      ],
+    }],
+  });
+  // const restaurants = await db.Users.findOne({
+  //   where: {
+  //     id: userId,
+  //   },
+  //   include: [{
+  //     model: db.FoodItems,
+  //     include: [{
+  //       model: db.Restaurants,
+  //       include: [
+  //         { model: db.ImagesRestaurants },
+  //         { model: db.Tags },
+  //         { model: db.Comments,
+  //           where: {
+  //             posterId: userId,
+  //           },
+  //           include: [{
+  //             model: db.Users
+  //           }],
+  //           required: false,
+  //         },
+  //       ],
+  //     }],
+  //   }]
+  // });
   let posts = [];
-  console.log(recipes, restaurants);
   await recipes.Recipes.forEach(recipe => {
     posts.push(recipe);
   });
-  await restaurants.FoodItems.forEach(restaurant => {
+  await restaurants.Restaurants.forEach(restaurant => {
     posts.push(restaurant);
   });
   return posts;
