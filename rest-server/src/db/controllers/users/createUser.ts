@@ -8,6 +8,7 @@ const createUser = async ({ email, displayName, profileImageUrl }) => {
     defaults: {
       displayName,
       profileImageUrl,
+      followerCount: 0,
     },
     raw: true,
   });

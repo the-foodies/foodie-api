@@ -18,6 +18,7 @@ const createUserRecipe = async (user, {
     protein,
     rating,
     sodium,
+    commentCount: 0,
   });
   await newRecipe.addUser(user);
   const id = await newRecipe.get('id');
