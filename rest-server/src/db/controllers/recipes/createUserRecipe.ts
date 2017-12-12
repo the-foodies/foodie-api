@@ -1,7 +1,7 @@
 import db from '../../';
 
 const createUserRecipe = async (user, {
-  title,
+  name,
   fat,
   calories,
   protein,
@@ -12,7 +12,7 @@ const createUserRecipe = async (user, {
   tags,
 }) => {
   const newRecipe = await db.Recipes.create({
-    title,
+    name,
     fat,
     calories,
     protein,
@@ -40,6 +40,7 @@ const createUserRecipe = async (user, {
         tag.addRecipe(newRecipe);
       });
   });
+  return newRecipe;
 };
 
 export default createUserRecipe;

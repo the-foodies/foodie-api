@@ -4,8 +4,10 @@ const restaurantController = {
   postRestaurant: async (req, res) => {
     const userId = req.session.user.id;
     const restaurant = req.body;
-    const newRestaurant = await createFoodItem(userId, restaurant, restaurant.items);
-    res.send(newRestaurant);
+    const newRestaurant = await createFoodItem(userId, restaurant, restaurant.foodItems);
+    res.send({
+      id: newRestaurant[0].dataValues.id,
+    });
   },
 
   getRestaurant: async (req, res) => {
