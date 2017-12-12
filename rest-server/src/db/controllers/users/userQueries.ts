@@ -30,29 +30,46 @@ const getUserPosts = async (userId) => {
         { model: db.Directions },
         { model: db.ImagesRecipes },
         { model: db.Tags },
-        { model: db.Comments },
-      ]
-    }]
+        { model: db.Comments,
+          include: [{
+            model: db.Users
+          }],
+          where: {
+            posterId: userId,
+          },
+        },
+      ],
+    }],
   });
   const restaurants = await db.Users.findOne({
     where: {
       id: userId,
     },
     include: [{
-      model: db.Restaurants,
-      include: [
-        { model: db.FoodItems },
-        { model: db.ImagesRestaurants},
-        { model: db.Tags },
-        { model: db.Comments},
-      ]
+      model: db.FoodItems,
+      include: [{
+        model: db.Restaurants,
+        include: [
+          { model: db.ImagesRestaurants },
+          { model: db.Tags },
+          { model: db.Comments,
+            include: [{
+              model: db.Users
+            }],
+            where: {
+              posterId: userId,
+            },
+          },
+        ],
+      }],
     }]
   })
   let posts = [];
+  console.log(recipes, restaurants);
   await recipes.Recipes.forEach(recipe => {
     posts.push(recipe);
   });
-  await restaurants.Restaurants.forEach(restaurant => {
+  await restaurants.FoodItems.forEach(restaurant => {
     posts.push(restaurant);
   });
   return posts;
