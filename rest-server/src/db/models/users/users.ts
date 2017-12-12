@@ -8,6 +8,8 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    profileImageUrl: DataTypes.STRING,
+    followerCount: DataTypes.INTEGER,
   });
 
   Users.associate = (models) => {

@@ -6,6 +6,7 @@ module.exports = (Sequelize, DataTypes) => {
     },
     address: DataTypes.STRING,
     website: DataTypes.STRING,
+    commentCount: DataTypes.INTEGER,
   });
 
   Restaurants.associate = (models) => {

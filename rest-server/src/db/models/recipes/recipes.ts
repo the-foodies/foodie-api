@@ -9,6 +9,7 @@ module.exports = (Sequelize, DataTypes) => {
     protein: DataTypes.INTEGER,
     rating: DataTypes.FLOAT,
     sodium: DataTypes.INTEGER,
+    commentCount: DataTypes.INTEGER,
   });
 
   Recipes.associate = (models) => {

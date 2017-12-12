@@ -1,4 +1,4 @@
-import { createUser } from '../db/controllers/';
+import { createUser, getUserById } from '../db/controllers/';
 
 const userController = {
   postUser: async (req, res) => {
@@ -7,8 +7,10 @@ const userController = {
     res.send(newUser);
   },
 
-  getUsers: () => {
-
+  getUser: async (req, res) => {
+    const id = req.query.id || req.session.user.id;
+    const user = await getUserById(id);
+    res.send(user);
   },
 };
 
