@@ -5,7 +5,9 @@ const recipeController = {
     const userId = req.session.user.id;
     const recipe = req.body;
     const newRecipe = await createUserRecipe(userId, recipe);
-    res.send(newRecipe);
+    res.send({
+      id: newRecipe.dataValues.id,
+    });
   },
 
   getRecipe: async (req, res) => {
