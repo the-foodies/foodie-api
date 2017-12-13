@@ -1,30 +1,30 @@
 import * as express from 'express';
 import isLoggedIn from '../middleware/isLoggedIn';
-import restaurantController from '../serverControllers/restaurantController';
-import recipeController from '../serverControllers/recipeController';
-import userController from '../serverControllers/userController';
-import subscriptionController from "../serverControllers/subscriptionController";
-import getPosts from '../serverControllers/postController';
+import { getRestaurant, postRestaurant } from '../serverControllers/restaurantController';
+import { getRecipe, postRecipe } from '../serverControllers/recipeController';
+import { getUser, postUser } from '../serverControllers/userController';
+import { getSubscriptions, postSubscription, isSubscribed } from "../serverControllers/subscriptionController";
+import { getPosts } from '../serverControllers/postController';
 
 const router = express.Router();
 
-// const createRestaurantFoodItem = require('../db/controllers/restaurants/CreateFoodItem');
-
 router.route('/restaurants')
-  .get(restaurantController.getRestaurant)
-  .post(isLoggedIn, restaurantController.postRestaurant)
+  .get(getRestaurant)
+  .post(isLoggedIn, postRestaurant)
 
 router.route('/recipes')
-  .get(recipeController.getRecipe)
-  .post(isLoggedIn, recipeController.postRecipe)
+  .get(getRecipe)
+  .post(isLoggedIn, postRecipe)
 
 router.route('/users')
-  .get(userController.getUser)
-  .post(isLoggedIn, userController.postUser)
+  .get(getUser)
+  .post(isLoggedIn, postUser)
 
 router.route('/subscriptions')
-  .get(subscriptionController.getSubscriptions)
-  .post(isLoggedIn, subscriptionController.postSubscription);
+  .get(getSubscriptions)
+  .post(isLoggedIn, postSubscription);
+
+router.get('/isSubbed', isSubscribed);
 
 router.get('/posts', getPosts);
 
