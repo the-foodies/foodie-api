@@ -1,4 +1,5 @@
 import * as express from 'express';
+import isLoggedIn from '../middleware/isLoggedIn';
 import restaurantController from '../serverControllers/restaurantController';
 import recipeController from '../serverControllers/recipeController';
 import userController from '../serverControllers/userController';
@@ -11,19 +12,19 @@ const router = express.Router();
 
 router.route('/restaurants')
   .get(restaurantController.getRestaurant)
-  .post(restaurantController.postRestaurant)
+  .post(isLoggedIn, restaurantController.postRestaurant)
 
 router.route('/recipes')
-  .get(recipeController.postRecipe)
-  .post(recipeController.getRecipe)
+  .get(recipeController.getRecipe)
+  .post(isLoggedIn, recipeController.postRecipe)
 
 router.route('/users')
-  .post(userController.postUser)
   .get(userController.getUser)
+  .post(isLoggedIn, userController.postUser)
 
 router.route('/subscriptions')
   .get(subscriptionController.getSubscriptions)
-  .post(subscriptionController.postSubscription);
+  .post(isLoggedIn, subscriptionController.postSubscription);
 
 router.get('/posts', getPosts);
 

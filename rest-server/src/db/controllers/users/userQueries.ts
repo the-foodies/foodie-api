@@ -10,6 +10,15 @@ const getUserByEmail = async (email) => {
   });
   return user;
 };
+const getUserByDisplayName = async (displayName) => {
+  const user = await db.Users.findOne({
+    where: {
+      displayName,
+    },
+    raw: true,
+  });
+  return user;
+};
 const getUserById = async (id) => {
   const user = await db.Users.findOne({
     where: {
@@ -43,7 +52,6 @@ const getUserPosts = async (userId) => {
         }
       ]
     }],
-
   });
   const restaurants = await db.Users.findOne({
     where: {
@@ -73,30 +81,6 @@ const getUserPosts = async (userId) => {
       ],
     }],
   });
-  // const restaurants = await db.Users.findOne({
-  //   where: {
-  //     id: userId,
-  //   },
-  //   include: [{
-  //     model: db.FoodItems,
-  //     include: [{
-  //       model: db.Restaurants,
-  //       include: [
-  //         { model: db.ImagesRestaurants },
-  //         { model: db.Tags },
-  //         { model: db.Comments,
-  //           where: {
-  //             posterId: userId,
-  //           },
-  //           include: [{
-  //             model: db.Users
-  //           }],
-  //           required: false,
-  //         },
-  //       ],
-  //     }],
-  //   }]
-  // });
   let posts = [];
   await recipes.Recipes.forEach(recipe => {
     posts.push(recipe);
@@ -110,5 +94,7 @@ const getUserPosts = async (userId) => {
 export {
   getUserByEmail,
   getUserById,
+  getUserByDisplayName,
   getUserPosts,
 };
+
