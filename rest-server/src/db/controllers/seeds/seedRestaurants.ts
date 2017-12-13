@@ -13,6 +13,7 @@ for (let i = 0; i < 10; i++) {
   const restaurant = {
     name: data[i].name,
     address: data[i].contact,
+    imageURL: 'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto,fl_lossy/wp-cms/uploads/2017/06/i-1-sonic-burger.jpg',
     website: 'thisisatest.com',
     tags: ['test1', 'test2', 'test3'],
   };

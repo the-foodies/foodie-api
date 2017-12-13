@@ -27,5 +27,6 @@ router.route('/subscriptions')
 router.get('/isSubbed', isSubscribed);
 
 router.get('/posts', getPosts);
+router.post('/comment', userController.postComment);
 
 export default router;

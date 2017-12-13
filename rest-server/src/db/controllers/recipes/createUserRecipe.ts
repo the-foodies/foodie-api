@@ -9,6 +9,7 @@ const createUserRecipe = async (user, {
   sodium,
   directions,
   ingredients,
+  imageURL,
   tags,
 }) => {
   const newRecipe = await db.Recipes.create({
@@ -21,18 +22,26 @@ const createUserRecipe = async (user, {
     commentCount: 0,
   });
   await newRecipe.addUser(user);
-  const id = await newRecipe.get('id');
+  const RecipeId = await newRecipe.get('id');
+  const UserId = await user.get('id');
+  if (imageURL) {
+    await db.ImagesRecipes.create({
+      RecipeId,
+      UserId,
+      image_url: imageURL,
+    })
+  }
   await directions.forEach((dir, i) => {
     db.Directions.create({
       description: dir,
       dirOrder: i,
-      RecipeId: id,
+      RecipeId,
     });
   });
   await ingredients.forEach((name) => {
     db.Ingredients.create({
       name,
-      RecipeId: id,
+      RecipeId,
     });
   });
   await tags.forEach((name) => {
