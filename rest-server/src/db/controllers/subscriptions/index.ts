@@ -1,7 +1,8 @@
 import createSubscription from './createSubscription';
-import getSubscriptionsById from './subscriptionQueries';
+import { getSubscriptionsById, isUserSubscribed } from './subscriptionQueries';
 
 export {
   createSubscription,
   getSubscriptionsById,
+  isUserSubscribed,
 };

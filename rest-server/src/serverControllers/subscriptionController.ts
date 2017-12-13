@@ -1,18 +1,21 @@
-import { createSubscription, getSubscriptionsById } from "../db/controllers/subscriptions/";
+import { createSubscription, getSubscriptionsById, isUserSubscribed } from "../db/controllers/subscriptions/";
 
-const subscriptionController = {
-  postSubscription: async (req, res) => {
-    const userId = req.session.user.id;
-    const subId = req.body.id;
-    const newSub = await createSubscription(userId, subId, 'user');
-    res.send(newSub);
-  },
+export const postSubscription = async (req, res) => {
+  const userId = req.session.user.id;
+  const subId = req.body.id;
+  const newSub = await createSubscription(userId, subId, 'user');
+  res.send(newSub);
+}
 
-  getSubscriptions: async (req, res) => {
-    const userId = req.session.user.id;
-    const subs = await getSubscriptionsById(userId);
-    res.send(subs);
-  },
-};
+export const getSubscriptions = async (req, res) => {
+  const userId = req.query.id || req.session.user.id;
+  const subs = await getSubscriptionsById(userId);
+  res.send(subs);
+}
 
-export default subscriptionController;
+export const isSubscribed = async (req, res) => {
+  const userId = req.session.user.id;
+  const subId = req.query.id;
+  const isSubbed = await isUserSubscribed(userId, subId);
+  isSubbed === null ? res.send(false) : res.send(true);
+}
