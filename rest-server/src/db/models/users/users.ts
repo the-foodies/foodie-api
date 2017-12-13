@@ -27,6 +27,7 @@ module.exports = (Sequelize, DataTypes) => {
     Users.hasMany(models.ImagesRestaurants);
     Users.hasMany(models.Subscriptions);
     Users.hasMany(models.ImagesRecipes);
+    Users.hasMany(models.Subscriptions);
   };
 
   return Users;
