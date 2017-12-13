@@ -15,8 +15,6 @@ mongoose.connect(
   { useMongoClient: true },
 );
 
-import isLoggedIn from './middleware/isLoggedIn';
-
 import catalog from './routes/catalog';
 import login from './routes/login';
 import signup from './routes/signup';
@@ -63,7 +61,7 @@ app.get('/search', search);
 app.post('/login', login);
 app.post('/logout', logout);
 app.post('/signup', signup);
-app.use('/api', isLoggedIn, catalog);
+app.use('/api', catalog);
 
 app.use((req, res) => {
   res.status(404).send('LUL wrong page');

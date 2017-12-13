@@ -13,6 +13,10 @@ module.exports = (Sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       foreignKey: { allowNull: false },
     });
+    FoodItems.belongsTo(models.Users, {
+      onDelete: 'CASCADE',
+      foreignKey: { allowNull: false },
+    })
   };
 
   return FoodItems;

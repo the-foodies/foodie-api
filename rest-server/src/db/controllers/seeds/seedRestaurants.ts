@@ -1,5 +1,5 @@
 import db from '../../';
-import { createFoodItem } from '../restaurants';
+import { createFoodItem } from '../';
 
 const data = require('../../seedData/restaurants.json');
 

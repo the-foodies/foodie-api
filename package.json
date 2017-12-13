@@ -12,6 +12,7 @@
     "seed:users": "cd rest-server/dist/db/controllers/seeds && node seedUsers.js",
     "seed:restaurants": "cd rest-server/dist/db/controllers/seeds && node seedRestaurants.js",
     "seed:recipes": "cd rest-server/dist/db/controllers/seeds && node seedRecipes.js",
+    "seed:comments": "cd rest-server/dist/db/controllers/seeds && node seedComments.js",
     "seed:db": "npm-run-all -s seed:users seed:recipes seed:restaurants"
   },
   "keywords": [],

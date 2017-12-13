@@ -1,10 +1,11 @@
 import db from '../../';
 
-const addRestaurantComment = async (user, restaurant, { title, text }) => {
+const addRestaurantComment = async (user, poster, restaurant, text) => {
   await db.Comments.create({
-    title,
     text,
-    RestaurantId: user,
+    RestaurantId: restaurant.id,
+    UserId: user.id,
+    posterId: poster.id,
   });
 };
 

@@ -19,6 +19,12 @@ module.exports = (Sequelize, DataTypes) => {
     Users.belongsToMany(models.Restaurants, {
       through: 'restaurants_users',
     });
+    Users.hasMany(models.Comments, {
+      as: 'poster',
+    });
+    Users.hasMany(models.Comments);
+    Users.hasMany(models.FoodItems);
+    Users.hasMany(models.ImagesRestaurants);
   };
 
   return Users;
