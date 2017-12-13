@@ -7,7 +7,7 @@ const createFoodItem = async (user, restaurant, items) => {
   const RestaurantId = await newRestaurant[0].get('id');
   const UserId = await user.get('id');
   if (restaurant.imageURL) {
-    const newImage = await db.ImagesRestaurants.create({
+    await db.ImagesRestaurants.create({
       RestaurantId,
       UserId,
       image_url: restaurant.imageURL,

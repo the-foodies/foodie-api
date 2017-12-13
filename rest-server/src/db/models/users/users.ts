@@ -25,6 +25,7 @@ module.exports = (Sequelize, DataTypes) => {
     Users.hasMany(models.Comments);
     Users.hasMany(models.FoodItems);
     Users.hasMany(models.ImagesRestaurants);
+    Users.hasMany(models.ImagesRecipes);
   };
 
   return Users;

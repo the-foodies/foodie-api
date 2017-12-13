@@ -1,4 +1,4 @@
-import { createUser, getUserById, getUserByDisplayName } from '../db/controllers/';
+import { createUser, getUserById, getUserByDisplayName, addRecipeComment, addRestaurantComment } from '../db/controllers/';
 
 const userController = {
   postUser: async (req, res) => {
@@ -15,10 +15,28 @@ const userController = {
       user = await getUserByDisplayName(req.query.displayName);
       console.log(user);
     } else {
-      user = await getUserById(req.session.user.id);      
+      user = await getUserById(req.session.user.id);
     }
     res.send(user);
   },
+
+  postComment: async (req, res, next) => {
+    // poster is who owns the post, user is tied to the comment itself
+    const {
+      user,
+      poster,
+      restaurant,
+      recipe,
+      text,
+    } = req.body;
+    if (restaurant) {
+      addRestaurantComment(user, poster, restaurant, text);
+    } else if (recipe) {
+      addRecipeComment(user, poster, recipe, text);
+    } else {
+      next();
+    }
+  }
 };
 
 export default userController;
