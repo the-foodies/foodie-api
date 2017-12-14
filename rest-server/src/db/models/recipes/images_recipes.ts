@@ -12,6 +12,7 @@ module.exports = (Sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       foreignKey: { allowNull: false },
     });
+    ImagesRecipes.belongsTo(models.Users);
   };
 
   return ImagesRecipes;

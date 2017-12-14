@@ -2,7 +2,7 @@ import * as express from 'express';
 import isLoggedIn from '../middleware/isLoggedIn';
 import { getRestaurant, postRestaurant } from '../serverControllers/restaurantController';
 import { getRecipe, postRecipe } from '../serverControllers/recipeController';
-import { getUser, postUser } from '../serverControllers/userController';
+import { getUser, postUser, postComment } from '../serverControllers/userController';
 import { getSubscriptions, postSubscription, isSubscribed } from "../serverControllers/subscriptionController";
 import { getPosts } from '../serverControllers/postController';
 
@@ -27,5 +27,6 @@ router.route('/subscriptions')
 router.get('/isSubbed', isSubscribed);
 
 router.get('/posts', getPosts);
+router.post('/comment', postComment);
 
 export default router;
