@@ -69,6 +69,8 @@ db.sequelize
     return false;
   });
 
-db.sequelize.sync();
+db.sequelize.sync()
+  .catch(err => console.log(err.message))
+  .finally(() => sequelize.close());
 
 export default <DbConnection>db;
