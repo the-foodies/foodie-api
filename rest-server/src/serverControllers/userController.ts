@@ -14,10 +14,11 @@ export const getUser = async (req, res) => {
     user = await getUserByDisplayName(req.query.displayName);
     console.log(user);
   } else {
-    user = await getUserById(req.session.user.id);      
+    user = await getUserById(req.session.user.id);
   }
   res.send(user);
 }
+
 export const postComment = async (req, res, next) => {
   // poster is who owns the post, user is tied to the comment itself
   const {
