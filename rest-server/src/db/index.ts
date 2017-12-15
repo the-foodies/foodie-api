@@ -71,6 +71,6 @@ db.sequelize
 
 db.sequelize.sync()
   .catch(err => console.log(err.message))
-  .finally(() => sequelize.close());
+  // .finally(() => sequelize.close());
 
 export default <DbConnection>db;

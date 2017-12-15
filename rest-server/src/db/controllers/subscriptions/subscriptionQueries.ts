@@ -1,26 +1,28 @@
 import db from '../../';
 
 const getSubscriptionsById = async (id) => {
-  const subscriptions = await db.Users.findOne({
+  const subscriptions = await db.Subscriptions.findAll({
     where: {
-      id,
+      UserId: id,
     },
     include: [{
-      model: db.Subscriptions
-    }]
+      model: db.Users,
+      as: 'userSubscribedTo',
+    }],
+    raw: true
   });
   const subscribees = await db.Subscriptions.findAll({
     where: {
       userSubscribedToId: id,
-    }
-  });
-  let temp = [];
-  await subscribees.forEach((subscriber) => {
-    temp.push(subscriber.dataValues);
+    },
+    include: [{
+      model: db.Users,
+    }],
+    raw: true
   });
   const output = {
-    subscriptions: subscriptions.dataValues.Subscriptions,
-    subscribees: temp,
+    subscriptions,
+    subscribees,
   }
   return output;
 };
