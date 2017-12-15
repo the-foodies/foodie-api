@@ -21,17 +21,19 @@ export const getUser = async (req, res) => {
 
 export const postComment = async (req, res, next) => {
   // poster is who owns the post, user is tied to the comment itself
+  const user = req.session.user;
   const {
-    user,
     poster,
     restaurant,
     recipe,
-    text,
+    comment,
   } = req.body;
   if (restaurant) {
-    addRestaurantComment(user, poster, restaurant, text);
+    const addedComment = await addRestaurantComment({ user, poster, restaurant, comment });
+    res.send(addedComment);    
   } else if (recipe) {
-    addRecipeComment(user, poster, recipe, text);
+    const addedComment = await addRecipeComment({ user, poster, recipe, comment });
+    res.send(addedComment);    
   } else {
     next();
   }
