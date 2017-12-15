@@ -6,14 +6,14 @@
   "scripts": {
     "test": "jest",
     "dev:rest": "cd rest-server && gulp",
-    "build:rest": "cd rest-server && gulp scripts",
+    "build:rest": "set BUILD_APP=true&& cd rest-server && gulp scripts",
     "start:rest": "cd rest-server/dist && nodemon index.js &",
-    "sync:db": "cd rest-server/dist/db && node index.js",
+    "sync:db": "set BUILD_APP=true&& cd rest-server/dist/db && node index.js",
     "seed:users": "cd rest-server/dist/db/controllers/seeds && node seedUsers.js",
     "seed:restaurants": "cd rest-server/dist/db/controllers/seeds && node seedRestaurants.js",
     "seed:recipes": "cd rest-server/dist/db/controllers/seeds && node seedRecipes.js",
     "seed:comments": "cd rest-server/dist/db/controllers/seeds && node seedComments.js",
-    "seed:db": "npm-run-all -s seed:users seed:recipes seed:restaurants seed:comments"
+    "seed:db": "set BUILD_APP=true&& npm-run-all -s seed:users seed:recipes seed:restaurants seed:comments"
   },
   "keywords": [],
   "author": "",

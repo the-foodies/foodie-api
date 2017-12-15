@@ -71,6 +71,10 @@ db.sequelize
 
 db.sequelize.sync()
   .catch(err => console.log(err.message))
-  // .finally(() => sequelize.close());
+  .finally(() => {
+    if (process.env.BUILD_APP) {
+      sequelize.close()
+    }
+  });
 
 export default <DbConnection>db;

@@ -12,7 +12,21 @@ const seedComments = (async () => {
     raw: true
   });
   restaurants.forEach(restaurant => {
-    addRestaurantComment({ id: (1 + Math.floor(Math.random() * 4)) }, { id: restaurant['Users.id'] }, restaurant, 'this is a rest comment');
+    const user = {
+      id: (1 + Math.floor(Math.random() * 4)),
+    };
+    const poster = {
+      id: restaurant['Users.id'],
+    };
+    const comment = {
+      text: 'this is a rest comment', 
+    };
+    addRestaurantComment({
+      user,
+      poster,
+      restaurant,
+      comment,
+    });
   });
 
   const recipes = await db.Recipes.findAll({
@@ -22,6 +36,20 @@ const seedComments = (async () => {
     raw: true
   });
   recipes.forEach(recipe => {
-    addRecipeComment({ id: (1 + Math.floor(Math.random() * 4)) }, { id: recipe['Users.id'] }, recipe, 'this is a recipe comment');
+    const user = {
+      id: (1 + Math.floor(Math.random() * 4)),
+    };
+    const poster = {
+      id: recipe['Users.id'],
+    };
+    const comment = {
+      text: 'this is a rest comment', 
+    };
+    addRecipeComment({
+      user,
+      poster,
+      recipe,
+      comment,
+    });
   });
 })();
