@@ -5,6 +5,18 @@ const getRecipeById = async (id) => {
     where: {
       id,
     },
+    include: [
+      { model: db.Ingredients },
+      { model: db.Directions },
+      { model: db.ImagesRecipes },
+      { model: db.Tags },
+      { model: db.Comments,
+        include: [{
+          model: db.Users
+        }],
+      },
+    ]
+
   });
   return recipe;
 };
