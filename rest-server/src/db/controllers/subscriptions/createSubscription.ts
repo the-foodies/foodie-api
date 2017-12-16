@@ -6,6 +6,7 @@ const createUserSubscription = async (user, subUser, typeOfSubscription) => {
     UserId: user,
     userSubscribedToId: subUser,
   });
+  db.Users.increment('followerCount', { where: { id: subUser } });
   return newSub;
 };
 

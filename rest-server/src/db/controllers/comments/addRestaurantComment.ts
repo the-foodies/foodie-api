@@ -7,6 +7,7 @@ const addRestaurantComment = async ({ user, poster, restaurant, comment }) => {
     UserId: user.id,
     posterId: poster.id,
   });
+  db.Restaurants.increment('commentCount', { where: { id: restaurant.id } });
   return addedComment;
 };
 

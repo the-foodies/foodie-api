@@ -7,6 +7,7 @@ const addRecipeComment = async ({ user, poster, recipe, comment }) => {
     UserId: user.id,
     posterId: poster.id,
   });
+  db.Recipes.increment('commentCount', { where: { id: recipe.id } });
   return addedComment;
 };
 
