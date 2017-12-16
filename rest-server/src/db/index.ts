@@ -3,6 +3,10 @@ import * as path from 'path';
 import * as Sequelize from 'sequelize';
 import sql from  './config/config';
 
+if (!process.env.SQL_DATABASE) {
+  require('dotenv').config({ path: path.join(__dirname, '../../../.env') });
+}
+
 const sequelize = new Sequelize(
   process.env.SQL_DATABASE || sql.database,
   process.env.SQL_USERNAME || sql.username,

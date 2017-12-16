@@ -29,7 +29,7 @@ const client = redis.createClient();
 const PORT = process.env.REST_PORT || 4420;
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:1337');
+  res.header('Access-Control-Allow-Origin', process.env.CLIENT_HOST || 'http://localhost:1337');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', 'true');  
