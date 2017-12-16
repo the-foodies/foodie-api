@@ -1,11 +1,10 @@
 import db from '../../';
 
-const createFoodItem = async (user, restaurant, items) => {
+const createFoodItem = async (UserId, restaurant, items) => {
   const newRestaurant = await db.Restaurants.findOrCreate({ where: { name: restaurant.name },
     defaults: { address: restaurant.address, website: restaurant.website, commentCount: 0 } });
-  await newRestaurant[0].addUser(user);
+  await newRestaurant[0].addUser(UserId);
   const RestaurantId = await newRestaurant[0].get('id');
-  const UserId = await user.get('id');
   if (restaurant.imageURL) {
     await db.ImagesRestaurants.create({
       RestaurantId,

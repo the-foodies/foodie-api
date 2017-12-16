@@ -6,6 +6,7 @@ export const postRestaurant = async (req, res) => {
   const newRestaurant = await createFoodItem(userId, restaurant, restaurant.foodItems);
   res.send({
     id: newRestaurant[0].dataValues.id,
+    name: newRestaurant[0].dataValues.name,
   });
 }
 

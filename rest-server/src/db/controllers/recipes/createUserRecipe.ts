@@ -1,6 +1,6 @@
 import db from '../../';
 
-const createUserRecipe = async (user, {
+const createUserRecipe = async (UserId, {
   name,
   fat,
   calories,
@@ -21,9 +21,8 @@ const createUserRecipe = async (user, {
     sodium,
     commentCount: 0,
   });
-  await newRecipe.addUser(user);
+  await newRecipe.addUser(UserId);
   const RecipeId = await newRecipe.get('id');
-  const UserId = await user.get('id');
   if (imageURL) {
     await db.ImagesRecipes.create({
       RecipeId,
