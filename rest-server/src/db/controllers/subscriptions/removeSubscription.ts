@@ -7,6 +7,7 @@ const removeSubscription = async (user, subUser) => {
       userSubscribedToId: subUser,
     },
   });
+  db.Users.increment('followerCount', { where: { id: subUser }, by: -1 });
   sub.destroy();
 };
 
