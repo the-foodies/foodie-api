@@ -17,6 +17,7 @@ const seedMongo = (async () => {
         type: 'recipe',
         id: tag['Recipes.id'],
         name: tag['Recipes.name'],
+        numMentions: tag['Recipes.commentCount'],
       };
     } else {
       return {
@@ -24,6 +25,7 @@ const seedMongo = (async () => {
         type: 'restaurant',
         id: tag['Restaurants.id'],
         name: tag['Restaurants.name'],
+        numMentions: tag['Restaurants.commentCount'],
       };
     }
   });

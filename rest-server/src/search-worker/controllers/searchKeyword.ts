@@ -11,10 +11,14 @@ export default async (req, res) => {
   });
   searchResults.forEach((res) => {
     if (res.name !== null) {
-      if (filteredResults[res.name]) {
-        filteredResults[res.name]++;
-      } else {
-        filteredResults[res.name] = 1;
+      if (!filteredResults[res.id]) {
+        const obj = {
+          id: res.id,
+          name: res.name,
+          type: res.type,
+          numMentions: res.numMentions,
+        };
+        filteredResults[res.id] = obj;
       }
     }
   });
