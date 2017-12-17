@@ -18,7 +18,7 @@ for (let i = 0; i < 10; i++) {
     tags: ['test1', 'test2', 'test3'],
   };
   testItem.description = data[i].description;
-  const randUser = (1 + Math.floor(Math.random() * 4));
+  const randUser = (1 + Math.floor(Math.random() * 5));
   db.Users.findOne({ where: { id: randUser } }).then((user) => {
     createFoodItem(user, restaurant, [testItem, testItem]);
   });

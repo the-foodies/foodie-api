@@ -16,7 +16,7 @@ for (let i = 0; i < 10; i++) {
     imageURL: 'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto,fl_lossy/wp-cms/uploads/2017/06/i-1-sonic-burger.jpg',
     tags: data[i].categories,
   };
-  const randUser = (1 + Math.floor(Math.random() * 4));
+  const randUser = (1 + Math.floor(Math.random() * 5));
   db.Users.findOne({ where: { id: randUser } }).then((user) => {
     createUserRecipe(user, recipe);
   });
