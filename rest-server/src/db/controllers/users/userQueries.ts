@@ -28,7 +28,6 @@ const getUserById = async (id) => {
   return user;
 };
 const getUserPosts = async (userId) => {
-  console.log(userId);
   const recipes = await db.Users.findOne({
     where: {
       id: userId,
