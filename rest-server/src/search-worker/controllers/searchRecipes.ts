@@ -4,7 +4,8 @@ export default async (req, res) => {
   const { query } = req.query;
   const filteredResults = {};
   const searchResults = await Keyword.find({
-    query: {
+    type : { $eq : 'recipe' },
+    name: {
       $regex: query,
       $options: 'i',
     },
@@ -27,4 +28,3 @@ export default async (req, res) => {
     // filter so only one post is sent back
   res.send(filteredResults);
 };
-
