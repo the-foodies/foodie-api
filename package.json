@@ -7,7 +7,7 @@
     "test": "jest",
     "dev:rest": "cd rest-server && gulp",
     "build:rest": "set BUILD_APP=true&& cd rest-server && gulp scripts",
-    "start:rest": "cd rest-server/dist && nodemon index.js &",
+    "start:rest": "cd rest-server/dist && nodemon index.js",
     "sync:db": "set BUILD_APP=true&& cd rest-server/dist/db && node index.js",
     "seed:users": "cd rest-server/dist/db/controllers/seeds && node seedUsers.js",
     "seed:restaurants": "cd rest-server/dist/db/controllers/seeds && node seedRestaurants.js",
