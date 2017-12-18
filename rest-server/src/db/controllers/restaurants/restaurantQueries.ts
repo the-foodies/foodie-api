@@ -4,13 +4,22 @@ const getRestaurantById = async (id) => {
   const restaurant = await db.Restaurants.findOne({
     where: {
       id,
-    }
+    },
+    include: [
+      { model: db.FoodItems },
+      { model: db.ImagesRestaurants},
+      { model: db.Tags },
+      { model: db.Comments,
+        include: [{
+          model: db.Users
+        }],
+      },
+    ]
   });
   return restaurant;
 }
 
 const getUserRestaurants = async (userId) => {
-  console.log(userId)
   const restaurants = await db.Users.findOne({
     where: {
       id: userId,
@@ -21,7 +30,11 @@ const getUserRestaurants = async (userId) => {
         { model: db.FoodItems },
         { model: db.ImagesRestaurants},
         { model: db.Tags },
-        { model: db.Comments},
+        { model: db.Comments,
+          include: [{
+            model: db.Users
+          }],
+        },
       ]
     }]
   })

@@ -12,21 +12,40 @@ const seedComments = (async () => {
     raw: true
   });
   restaurants.forEach(restaurant => {
-    const user = {
-      id: (1 + Math.floor(Math.random() * 4)),
-    };
     const poster = {
       id: restaurant['Users.id'],
     };
-    const comment = {
-      text: 'this is a rest comment', 
-    };
-    addRestaurantComment({
-      user,
-      poster,
-      restaurant,
-      comment,
-    });
+    const user = () => {
+      let commenter = {
+        id: (1 + Math.floor(Math.random() * 5)),
+      };
+      console.log(commenter);
+      while (commenter.id === poster.id) {
+        commenter = {
+          id: (1 + Math.floor(Math.random() * 5)),
+        };
+      }
+      return commenter;
+    }
+    const comments = [
+      {
+        text: `Great restaurant ${restaurant['Users.displayName']}`,
+      },
+      {
+        text: `I'll have to go there! ${restaurant['Users.displayName']}`,
+      },
+      {
+        text: `Bro beans ${restaurant.name} is trash`,
+      }
+    ];
+    comments.forEach((comment) => {
+      addRestaurantComment({
+        user: user(),
+        poster,
+        restaurant,
+        comment,
+      });
+    })
   });
 
   const recipes = await db.Recipes.findAll({
@@ -36,20 +55,39 @@ const seedComments = (async () => {
     raw: true
   });
   recipes.forEach(recipe => {
-    const user = {
-      id: (1 + Math.floor(Math.random() * 4)),
-    };
     const poster = {
       id: recipe['Users.id'],
     };
-    const comment = {
-      text: 'this is a rest comment', 
-    };
-    addRecipeComment({
-      user,
-      poster,
-      recipe,
-      comment,
-    });
+    const user = () => {
+      let commenter = {
+        id: (1 + Math.floor(Math.random() * 5)),
+      };
+      while (commenter.id === poster.id) {
+        commenter = {
+          id: (1 + Math.floor(Math.random() * 5)),
+        };
+      }
+      return commenter;
+    }
+    const { name } = recipe;
+    const comments = [
+      {
+        text: `Ayy I love ${name} too ${recipe['Users.displayName']}!`,
+      },
+      {
+        text: `Best ${name} recipe!`,
+      },
+      {
+        text: `Need to try it!`
+      },
+    ];
+    comments.forEach((comment) => {
+      addRecipeComment({
+        user: user(),
+        poster,
+        recipe,
+        comment,
+      });
+    })
   });
 })();

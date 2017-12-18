@@ -33,7 +33,11 @@ const getUserRecipes = async (userId) => {
         { model: db.Directions },
         { model: db.ImagesRecipes },
         { model: db.Tags },
-        { model: db.Comments },
+        { model: db.Comments,
+          include: [{
+            model: db.Users
+          }],
+        },
       ]
     }]
   });

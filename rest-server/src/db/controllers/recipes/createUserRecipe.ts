@@ -12,6 +12,7 @@ const createUserRecipe = async (user, {
   imageURL,
   tags,
 }) => {
+  name = name.trim();
   const newRecipe = await db.Recipes.create({
     name,
     fat,
@@ -21,9 +22,9 @@ const createUserRecipe = async (user, {
     sodium,
     commentCount: 0,
   });
-  await newRecipe.addUser(user);
   const RecipeId = await newRecipe.get('id');
-  const UserId = await user.get('id');
+  const UserId = await user.get('id');  
+  await newRecipe.addUser(UserId);
   if (imageURL) {
     await db.ImagesRecipes.create({
       RecipeId,

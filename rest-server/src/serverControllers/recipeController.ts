@@ -6,6 +6,7 @@ export const postRecipe = async (req, res) => {
   const newRecipe = await createUserRecipe(userId, recipe);
   res.send({
     id: newRecipe.dataValues.id,
+    name: newRecipe.dataValues.name,
   });
 }
 
