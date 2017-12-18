@@ -12,14 +12,21 @@ const seedComments = (async () => {
     raw: true
   });
   restaurants.forEach(restaurant => {
-    const user = () => (
-      {
-        id: (1 + Math.floor(Math.random() * 5)),
-      }
-    );
     const poster = {
       id: restaurant['Users.id'],
     };
+    const user = () => {
+      let commenter = {
+        id: (1 + Math.floor(Math.random() * 5)),
+      };
+      console.log(commenter);
+      while (commenter.id === poster.id) {
+        commenter = {
+          id: (1 + Math.floor(Math.random() * 5)),
+        };
+      }
+      return commenter;
+    }
     const comments = [
       {
         text: `Great restaurant ${restaurant['Users.displayName']}`,
@@ -28,7 +35,7 @@ const seedComments = (async () => {
         text: `I'll have to go there! ${restaurant['Users.displayName']}`,
       },
       {
-        text: `Bro beans ${restaurant['Users.displayName']} is trash`,
+        text: `Bro beans ${restaurant.name} is trash`,
       }
     ];
     comments.forEach((comment) => {
@@ -48,15 +55,21 @@ const seedComments = (async () => {
     raw: true
   });
   recipes.forEach(recipe => {
-    const user = () => (
-      {
-        id: (1 + Math.floor(Math.random() * 5)),
-      }
-    );
     const poster = {
       id: recipe['Users.id'],
     };
-    const { name } = recipes;
+    const user = () => {
+      let commenter = {
+        id: (1 + Math.floor(Math.random() * 5)),
+      };
+      while (commenter.id === poster.id) {
+        commenter = {
+          id: (1 + Math.floor(Math.random() * 5)),
+        };
+      }
+      return commenter;
+    }
+    const { name } = recipe;
     const comments = [
       {
         text: `Ayy I love ${name} too ${recipe['Users.displayName']}!`,
