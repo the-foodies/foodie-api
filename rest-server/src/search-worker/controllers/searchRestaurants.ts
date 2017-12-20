@@ -3,12 +3,17 @@ import { Keyword } from '../db/models';
 export default async (req, res) => {
   const { query } = req.query;
   const filteredResults = {};
+  const finalResults = [];
   const searchResults = await Keyword.find({
-    query: {
+    type: { $eq : 'restaurant' },
+    name: {
       $regex: query,
       $options: 'i',
     },
-  });
+  })
+    .lean()
+    .sort({ numMentions: -1 })
+    .limit(10);
   searchResults.forEach((res) => {
     if (res.name !== null) {
       if (!filteredResults[res.id]) {
@@ -19,12 +24,10 @@ export default async (req, res) => {
           numMentions: res.numMentions,
         };
         filteredResults[res.id] = obj;
+        finalResults.push(obj);
       }
     }
   });
-  console.log(filteredResults);
-    // .sort('-numMentions);
-    // filter so only one post is sent back
-  res.send(filteredResults);
+  console.log(finalResults);
+  res.send(finalResults);
 };
-

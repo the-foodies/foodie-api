@@ -19,7 +19,8 @@ import catalog from './routes/catalog';
 import login from './routes/login';
 import signup from './routes/signup';
 import logout from './routes/logout';
-import search from './search-worker/controllers/searchKeyword'
+import search from './search-worker'
+import trending from './trending-worker';
 
 const RedisStore = Redis(session);
 
@@ -57,7 +58,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 // routes
-app.get('/search', search);
+app.use('/search', search);
+app.use('/trending', trending);
 app.post('/login', login);
 app.post('/logout', logout);
 app.post('/signup', signup);

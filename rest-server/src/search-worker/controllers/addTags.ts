@@ -1,7 +1,6 @@
 import { Keyword } from '../db/models';
 
-export default async (req, res) => { 
-  const { tags, type, id, name } = req.body;
+export default async (tags, type, id, name) => { 
 
   const keywords = tags.map((tag) => {
     return {
@@ -11,6 +10,6 @@ export default async (req, res) => {
       name,
     };
   });
-  const newKeyword = await Keyword.create(...keywords);
-  res.send(newKeyword);
+  const newKeywords = await Keyword.create(...keywords);
+  return newKeywords
 };

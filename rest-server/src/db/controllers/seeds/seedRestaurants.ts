@@ -1,7 +1,7 @@
 import db from '../../';
 import { createFoodItem } from '../';
 
-const data = require('../../seedData/restaurants.json');
+const data = require('../../seedData/restImages.json');
 
 const testItem = {
   name: 'Test Food',
@@ -13,13 +13,11 @@ for (let i = 0; i < 10; i++) {
   const restaurant = {
     name: data[i].name,
     address: data[i].contact,
-    imageURL: 'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto,fl_lossy/wp-cms/uploads/2017/06/i-1-sonic-burger.jpg',
+    imageURL: data[i].imageURL || 'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto,fl_lossy/wp-cms/uploads/2017/06/i-1-sonic-burger.jpg',
     website: 'thisisatest.com',
-    tags: ['test1', 'test2', 'test3'],
+    tags: ['item1', 'item2', 'item3'],
   };
   testItem.description = data[i].description;
   const randUser = (1 + Math.floor(Math.random() * 5));
-  db.Users.findOne({ where: { id: randUser } }).then((user) => {
-    createFoodItem(user, restaurant, [testItem, testItem]);
-  });
+  createFoodItem(randUser, restaurant, [testItem, testItem]);
 }

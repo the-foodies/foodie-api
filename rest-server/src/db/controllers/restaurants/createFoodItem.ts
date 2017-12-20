@@ -1,12 +1,17 @@
 import db from '../../';
+import { addTags } from '../../../search-worker/controllers/'
 
-const createFoodItem = async (user, restaurant, items) => {
+const createFoodItem = async (UserId, restaurant, items) => {
   const restname = restaurant.name.trim();
   const newRestaurant = await db.Restaurants.findOrCreate({ where: { name: restname },
     defaults: { address: restaurant.address, website: restaurant.website, commentCount: 0 } });
   const RestaurantId = await newRestaurant[0].get('id');
-  const UserId = await user.get('id');
-  await newRestaurant[0].addUser(UserId);
+  const user = await db.Users.findOne({
+    where: {
+      id: UserId,
+    },
+  });
+  await newRestaurant[0].addUser(user);
   if (restaurant.imageURL) {
     await db.ImagesRestaurants.create({
       RestaurantId,
@@ -29,6 +34,9 @@ const createFoodItem = async (user, restaurant, items) => {
         tag.addRestaurant(newRestaurant[0]);
       });
   });
+  if (!process.env.BUILD_APP) {
+    addTags(restaurant.tags, 'restaurant', RestaurantId, restname);
+  }
   return newRestaurant;
 };
 

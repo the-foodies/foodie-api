@@ -1,6 +1,7 @@
 import db from '../../';
+import { addTags } from '../../../search-worker/controllers';
 
-const createUserRecipe = async (user, {
+const createUserRecipe = async (UserId, {
   name,
   fat,
   calories,
@@ -22,9 +23,13 @@ const createUserRecipe = async (user, {
     sodium,
     commentCount: 0,
   });
+  const user = await db.Users.findOne({
+    where: {
+      id: UserId,
+    },
+  });
   const RecipeId = await newRecipe.get('id');
-  const UserId = await user.get('id');  
-  await newRecipe.addUser(UserId);
+  await newRecipe.addUser(user);
   if (imageURL) {
     await db.ImagesRecipes.create({
       RecipeId,
@@ -51,6 +56,9 @@ const createUserRecipe = async (user, {
         tag.addRecipe(newRecipe);
       });
   });
+  if (!process.env.BUILD_APP) {
+    addTags(tags, 'recipe', RecipeId, name);
+  }
   return newRecipe;
 };
 
