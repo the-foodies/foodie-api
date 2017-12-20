@@ -4,12 +4,16 @@ export default async (req, res) => {
   console.log(req.query);
   const { query } = req.query;
   const filteredResults = {};
+  const finalResults = [];
   const searchResults = await Keyword.find({
     query: {
       $regex: query,
       $options: 'i',
     },
-  });
+  })
+    .lean()
+    .sort({ numMentions: -1 })
+    .limit(10);
   searchResults.forEach((res) => {
     if (res.name !== null) {
       if (!filteredResults[res.query]) {
@@ -21,12 +25,11 @@ export default async (req, res) => {
           tag: res.query,
         };
         filteredResults[res.query] = obj;
+        finalResults.push(obj);
       }
     }
   });
-  console.log(filteredResults);
-    // .sort('-numMentions);
-    // filter so only one post is sent back
-  res.send(filteredResults);
+  console.log(finalResults);
+  res.send(finalResults);
 };
 

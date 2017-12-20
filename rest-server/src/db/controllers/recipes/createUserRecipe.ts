@@ -1,4 +1,5 @@
 import db from '../../';
+import { addTags } from '../../../search-worker/controllers';
 
 const createUserRecipe = async (UserId, {
   name,
@@ -55,6 +56,9 @@ const createUserRecipe = async (UserId, {
         tag.addRecipe(newRecipe);
       });
   });
+  if (!process.env.BUILD_APP) {
+    addTags(tags, 'recipe', RecipeId, name);
+  }
   return newRecipe;
 };
 

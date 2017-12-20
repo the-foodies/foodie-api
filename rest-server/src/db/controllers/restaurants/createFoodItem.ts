@@ -1,4 +1,5 @@
 import db from '../../';
+import { addTags } from '../../../search-worker/controllers/'
 
 const createFoodItem = async (UserId, restaurant, items) => {
   const restname = restaurant.name.trim();
@@ -33,6 +34,9 @@ const createFoodItem = async (UserId, restaurant, items) => {
         tag.addRestaurant(newRestaurant[0]);
       });
   });
+  if (!process.env.BUILD_APP) {
+    addTags(restaurant.tags, 'restaurant', RestaurantId, restname);
+  }
   return newRestaurant;
 };
 
