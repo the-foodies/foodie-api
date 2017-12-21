@@ -57,7 +57,7 @@ const createUserRecipe = async (UserId, {
       });
   });
   if (!process.env.BUILD_APP) {
-    addTags(tags, 'recipe', RecipeId, name);
+    addTags(tags, 'recipe', RecipeId, name, 0);
   }
   return newRecipe;
 };
