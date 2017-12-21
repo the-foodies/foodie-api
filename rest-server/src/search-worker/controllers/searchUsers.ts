@@ -23,8 +23,5 @@ export default async (req, res) => {
       }
     }
   });
-  console.log(filteredResults);
-    // .sort('-numMentions);
-    // filter so only one post is sent back
   res.send(filteredResults);
 };

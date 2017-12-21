@@ -1,7 +1,6 @@
 import { Keyword } from '../db/models';
 
 export default async (req, res) => {
-  console.log(req.query);
   const { query } = req.query;
   const filteredResults = {};
   const finalResults = [];
@@ -29,7 +28,6 @@ export default async (req, res) => {
       }
     }
   });
-  console.log(finalResults);
   res.send(finalResults);
 };
 

@@ -25,7 +25,9 @@ import trending from './trending-worker';
 const RedisStore = Redis(session);
 
 const app = express();
+
 const client = redis.createClient();
+const cache = require('express-redis-cache')({ client, expire: 5000 })
 
 const PORT = process.env.REST_PORT || 4420;
 
@@ -35,7 +37,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', 'true');  
   if ('OPTIONS' === req.method) {
-    res.send(200);
+    res.sendStatus(200);
   } else {
     next();
   }
@@ -58,8 +60,14 @@ app.use(bodyParser.urlencoded({
 }));
 
 // routes
-app.use('/search', search);
-app.use('/trending', trending);
+app.use('/search',
+  cache.route(),
+  search,
+);
+app.use('/trending',
+  // cache.route(),
+  trending,
+);
 app.post('/login', login);
 app.post('/logout', logout);
 app.post('/signup', signup);

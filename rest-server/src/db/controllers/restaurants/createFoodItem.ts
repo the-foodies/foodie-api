@@ -35,7 +35,7 @@ const createFoodItem = async (UserId, restaurant, items) => {
       });
   });
   if (!process.env.BUILD_APP) {
-    addTags(restaurant.tags, 'restaurant', RestaurantId, restname);
+    addTags(restaurant.tags, 'restaurant', RestaurantId, restname, 0);
   }
   return newRestaurant;
 };

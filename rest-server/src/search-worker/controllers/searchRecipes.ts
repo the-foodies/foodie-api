@@ -28,6 +28,5 @@ export default async (req, res) => {
       }
     }
   });
-  console.log(finalResults);
   res.send(finalResults);
 };
