@@ -6,6 +6,7 @@ const getRecipeById = async (id) => {
       id,
     },
     include: [
+      { model: db.Users },
       { model: db.Ingredients },
       { model: db.Directions },
       { model: db.ImagesRecipes },

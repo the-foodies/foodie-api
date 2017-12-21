@@ -6,6 +6,7 @@ const getRestaurantById = async (id) => {
       id,
     },
     include: [
+      { model: db.Users },
       { model: db.FoodItems },
       { model: db.ImagesRestaurants},
       { model: db.Tags },
