@@ -48,9 +48,7 @@ const getUserPosts = async (userId, limit) => {
           include: [{
             model: db.Users
           }],
-          order: [
-            [db.Comments, 'createdAt', 'DESC'],
-          ],
+        
           required: false,
         }
       ]
@@ -83,9 +81,7 @@ const getUserPosts = async (userId, limit) => {
           include: [{
             model: db.Users
           }],
-          order: [
-            [db.Comments, 'createdAt', 'DESC'],
-          ],
+
           required: false,
         },
       ],
@@ -107,4 +103,3 @@ export {
   getUserByDisplayName,
   getUserPosts,
 };
-
