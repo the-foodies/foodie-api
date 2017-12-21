@@ -1,5 +1,10 @@
 import * as express from 'express';
-import { trendingRecipes, trendingRestaurants, allTrending } from './controllers';
+import {
+  trendingRecipes,
+  trendingRestaurants,
+  allTrending,
+  allTrendingForTags
+} from './controllers';
 
 const router = express.Router();
 
@@ -8,6 +13,9 @@ router.route('/recipes')
 
 router.route('/restaurants')
   .get(trendingRestaurants);
+
+router.route('/tags')
+  .get(allTrendingForTags);
 
 router.route('/')
   .get(allTrending);

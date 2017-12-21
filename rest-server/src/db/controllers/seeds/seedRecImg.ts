@@ -21,7 +21,6 @@ const seedImages = async () => {
       },
       json: true,
     };
-    console.log('on recipe ', i);
     // const tryGet = async (ops) => {
     //   try {
     //     const data = await request(ops);

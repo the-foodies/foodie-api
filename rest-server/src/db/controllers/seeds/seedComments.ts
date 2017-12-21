@@ -19,7 +19,6 @@ const seedComments = (async () => {
       let commenter = {
         id: (1 + Math.floor(Math.random() * 5)),
       };
-      console.log(commenter);
       while (commenter.id === poster.id) {
         commenter = {
           id: (1 + Math.floor(Math.random() * 5)),

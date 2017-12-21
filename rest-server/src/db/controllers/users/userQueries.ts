@@ -1,4 +1,5 @@
 import db from '../../';
+import mergeSort from '../../utils/mergeSort';
 
 const getUserByEmail = async (email) => {
   const user = await db.Users.findOne({
@@ -27,7 +28,7 @@ const getUserById = async (id) => {
   });
   return user;
 };
-const getUserPosts = async (userId) => {
+const getUserPosts = async (userId, limit) => {
   const recipes = await db.Users.findOne({
     where: {
       id: userId,
@@ -47,10 +48,17 @@ const getUserPosts = async (userId) => {
           include: [{
             model: db.Users
           }],
+          order: [
+            [db.Comments, 'createdAt', 'DESC'],
+          ],
           required: false,
         }
       ]
     }],
+    order: [
+      [db.Recipes, 'createdAt', 'DESC'],
+    ],
+    limit,
   });
   const restaurants = await db.Users.findOne({
     where: {
@@ -75,18 +83,21 @@ const getUserPosts = async (userId) => {
           include: [{
             model: db.Users
           }],
+          order: [
+            [db.Comments, 'createdAt', 'DESC'],
+          ],
           required: false,
         },
       ],
     }],
+    order: [
+      [db.Restaurants, 'createdAt', 'DESC']
+    ],
+    limit,
   });
-  let posts = [];
-  await recipes.Recipes.forEach(recipe => {
-    posts.push(recipe);
-  });
-  await restaurants.Restaurants.forEach(restaurant => {
-    posts.push(restaurant);
-  });
+
+  let posts = mergeSort(recipes.Recipes, restaurants.Restaurants, 'createdAt');
+
   return posts;
 }
 

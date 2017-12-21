@@ -12,7 +12,6 @@ export const getUser = async (req, res) => {
     user = await getUserById(req.query.id);
   } else if (req.query.displayName) {
     user = await getUserByDisplayName(req.query.displayName);
-    console.log(user);
   } else {
     user = await getUserById(req.session.user.id);
   }
