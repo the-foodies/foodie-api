@@ -48,14 +48,12 @@ const getUserPosts = async (userId, limit) => {
           include: [{
             model: db.Users
           }],
-        
+
           required: false,
         }
       ]
     }],
-    order: [
-      [db.Recipes, 'createdAt', 'DESC'],
-    ],
+
     limit,
   });
   const restaurants = await db.Users.findOne({
@@ -86,9 +84,7 @@ const getUserPosts = async (userId, limit) => {
         },
       ],
     }],
-    order: [
-      [db.Restaurants, 'createdAt', 'DESC']
-    ],
+
     limit,
   });
 
