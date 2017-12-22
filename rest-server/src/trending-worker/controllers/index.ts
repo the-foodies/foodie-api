@@ -3,7 +3,7 @@ import { trendingRecipes,
   allTrending,
   allTrendingForTags,
   allTags,
-} from './trendingsearchController';
+} from './trendingSearchController';
 
 export {
   trendingRecipes,

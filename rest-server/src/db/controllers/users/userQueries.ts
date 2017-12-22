@@ -54,7 +54,7 @@ const getUserPosts = async (userId, limit) => {
       ]
     }],
 
-    limit,
+    limit: Math.ceil(limit/2),
   });
   const restaurants = await db.Users.findOne({
     where: {
@@ -85,7 +85,7 @@ const getUserPosts = async (userId, limit) => {
       ],
     }],
 
-    limit,
+    limit: Math.ceil(limit/2),
   });
 
   let posts = mergeSort(recipes.Recipes, restaurants.Restaurants, 'createdAt');
