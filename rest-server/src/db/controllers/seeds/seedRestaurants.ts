@@ -1,7 +1,7 @@
 import db from '../../';
 import { createFoodItem } from '../';
 
-const data = require('../../seedData/restImages.json');
+const data = require('../../seedData/restImagesFullest.json');
 
 const testItem = {
   name: 'Test Food',
