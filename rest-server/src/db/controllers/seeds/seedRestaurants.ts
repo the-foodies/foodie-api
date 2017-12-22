@@ -15,7 +15,7 @@ for (let i = 0; i < 10; i++) {
     address: data[i].contact,
     imageURL: data[i].imageURL || 'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto,fl_lossy/wp-cms/uploads/2017/06/i-1-sonic-burger.jpg',
     website: 'thisisatest.com',
-    tags: ['item1', 'item2', 'item3'],
+    tags: ['dank', 'expensive', 'scenic', data[i].name],
   };
   testItem.description = data[i].description;
   const randUser = (1 + Math.floor(Math.random() * 5));
