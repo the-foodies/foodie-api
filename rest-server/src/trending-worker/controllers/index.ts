@@ -1,12 +1,14 @@
 import { trendingRecipes,
   trendingRestaurants,
   allTrending,
-  allTrendingForTags
-} from './trendingSearchController';
+  allTrendingForTags,
+  allTags,
+} from './trendingsearchController';
 
 export {
   trendingRecipes,
   trendingRestaurants,
   allTrending,
   allTrendingForTags,
+  allTags,
 }

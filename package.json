@@ -14,7 +14,7 @@
     "seed:restaurants": "set BUILD_APP=true&& cd rest-server/dist/db/controllers/seeds && node seedRestaurants.js",
     "seed:recipes": "set BUILD_APP=true&& cd rest-server/dist/db/controllers/seeds && node seedRecipes.js",
     "seed:comments": "set BUILD_APP=true&& cd rest-server/dist/db/controllers/seeds && node seedComments.js",
-    "seed:db": "set BUILD_APP=true&& npm-run-all -s seed:users seed:recipes seed:restaurants seed:comments"
+    "seed:db": "set BUILD_APP=true&& npm-run-all -s seed:recipes seed:restaurants seed:comments"
   },
   "keywords": [],
   "author": "",
