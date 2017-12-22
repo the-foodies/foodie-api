@@ -3,7 +3,8 @@ import {
   trendingRecipes,
   trendingRestaurants,
   allTrending,
-  allTrendingForTags
+  allTrendingForTags,
+  allTags,
 } from './controllers';
 
 const router = express.Router();
@@ -16,6 +17,9 @@ router.route('/restaurants')
 
 router.route('/tags')
   .get(allTrendingForTags);
+
+router.route('/d3')
+  .get(allTags);
 
 router.route('/')
   .get(allTrending);

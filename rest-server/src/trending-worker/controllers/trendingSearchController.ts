@@ -49,6 +49,25 @@ const searchByTags = async (type, tags) => {
     { $sort: { numMentions: -1 } },
     { $limit: 10 }
   ]);
+
+  return searchResults;
+}
+
+const d3Tags  = async () => {
+  const searchResults = await Keyword.aggregate([
+    { $match: {
+        numMentions: { $ne: null }
+    } },
+    { $group: {
+      _id: '$query',
+      tag: { $first: '$query'},
+      type: { $first: '$type' },
+      id: { $first: '$id' },
+      numMentions: {
+        $sum: '$numMentions'
+      },
+    } },
+  ]);
   return searchResults;
 }
 
@@ -91,6 +110,11 @@ export const allTrending = async (req, res) => {
   })
   const allData = await Promise.all(allResults);
   res.send(allData);
+}
+
+export const allTags = async (req, res) => {
+  const results = await d3Tags();
+  res.send(results);
 }
 
 export const allTrendingForTags = async (req, res) => {
