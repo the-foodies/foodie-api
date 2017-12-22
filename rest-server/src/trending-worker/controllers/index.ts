@@ -2,7 +2,7 @@ import { trendingRecipes,
   trendingRestaurants,
   allTrending,
   allTrendingForTags
-} from './trendingsearchController';
+} from './trendingSearchController';
 
 export {
   trendingRecipes,
