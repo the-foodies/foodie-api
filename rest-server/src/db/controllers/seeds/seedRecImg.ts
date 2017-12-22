@@ -6,11 +6,7 @@ const recipes = require('../../seedData/recImagesFuller.json');
 
 const seedImages = async () => {
   const newRecs = [];
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> [feat]
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
 
