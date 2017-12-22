@@ -9,11 +9,11 @@ const seedImages = async () => {
 
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
-
+    const query = recipe.title.trim() + ' recipe';
     var options = {
       method: 'GET',
       url: 'https://api.cognitive.microsoft.com/bing/v7.0/images/search',
-      qs: { q: recipe.title.trim() },
+      qs: { q: query },
       headers: {
         'cache-control': 'no-cache',
         accept: 'application/javascript',
@@ -24,9 +24,16 @@ const seedImages = async () => {
     const tryGet = async (ops, first) => {
       try {
         const data = await request(ops);
+        let httpsImageUrl;
+        for (let ii = 0; ii < data.value.length; ii++) {
+          if (data.value[ii].contentUrl.substring(0, 5) === 'https') {
+            httpsImageUrl = data.value[ii].contentUrl;
+            break;
+          }
+        }
         return {
           ...recipe,
-          imageURL: data.value[0].contentUrl
+          imageURL: httpsImageUrl
         };
       } catch (error) {
         if (first) {
