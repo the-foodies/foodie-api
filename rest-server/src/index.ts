@@ -65,6 +65,12 @@ app.use('/search',
   search,
 );
 app.use('/trending',
+  (req, res, next) => {
+    if (req.query.query) {
+      res.use_express_redis_cache = false;
+    }
+    next();
+  },
   cache.route(),
   trending,
 );
@@ -74,6 +80,10 @@ app.post('/signup', signup);
 app.use('/api', catalog);
 
 app.use((req, res) => {
+  cache.del('*', (err, numDeletions) => {
+    if (err) throw new Error(err);
+    console.log('deleted ', numDeletions, ' cache entries');
+  });
   res.status(404).send('LUL wrong page');
 })
 

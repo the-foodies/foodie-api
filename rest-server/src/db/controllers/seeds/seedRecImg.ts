@@ -5,7 +5,7 @@ const recipes = require('../../seedData/recImagesFuller.json');
 // const restaurants = require('../../seedData/restaurants.json');
 
 const seedImages = async () => {
-  const newRecPromise = [];
+  const newRecs = [];
   
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
@@ -21,38 +21,36 @@ const seedImages = async () => {
       },
       json: true,
     };
-    // const tryGet = async (ops) => {
-    //   try {
-    //     const data = await request(ops);
-    //     return {
-    //       ...recipe,
-    //       imageURL: data.value[0].contentUrl
-    //     };
-    //   } catch (error) {
-    //     console.error(error)
-    //     return {
-    //       ...recipe,
-    //       imageURL: null,
-    //     };
-    //   }
-    // }
-    
-    if (recipe.imageURL) {
-      newRecPromise.push(recipe);
-    } else {
-      const data = await request(options);
-        newRecPromise.push({
+    const tryGet = async (ops, first) => {
+      try {
+        const data = await request(ops);
+        return {
           ...recipe,
           imageURL: data.value[0].contentUrl
-        });
+        };
+      } catch (error) {
+        if (first) {
+          setTimeout(() => {
+            tryGet(options, false);
+          }, 1000);
+        } else {
+          console.error(error)
+          return {
+            ...recipe,
+            imageURL: null,
+          };
+        }
+      }
     }
+    const rec = await tryGet(options, true);
+    newRecs.push(rec);
   }
-  return newRecPromise;
+  return newRecs;
 }
 seedImages()
   .then((recImages) => {
     const json = JSON.stringify(recImages);
-    fs.writeFile('../../seedData/recImagesFuller.json', json, () => {
+    fs.writeFile('../../seedData/recImagesFullest.json', json, () => {
       console.log('wrote it ', recImages[0]);
     });
   })
